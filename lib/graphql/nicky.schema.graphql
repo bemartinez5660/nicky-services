@@ -1,0 +1,5513 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+"""Delete many user address"""
+type addressesDelete {
+  result: [useraddressType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""
+Archive account and revoke refresh tokens.
+
+User must be verified and confirm password.
+"""
+type ArchiveAccount {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""BinaryArray is used to convert a Django BinaryField to the string form"""
+scalar Binary
+
+input BooleanFilter {
+  """Exact match."""
+  exact: Boolean
+  in: [Boolean]
+
+  """Is null."""
+  isnull: Boolean
+}
+
+type CustomObtainJSONWebToken {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  success: Boolean
+  errors: ExpectedErrorType
+  user: UserNode
+  unarchiving: Boolean
+  token: String!
+  refreshToken: String!
+}
+
+type dataStatusServiceType {
+  stat: String
+  count: Int
+}
+
+"""
+The `Date` scalar type represents a Date
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Date
+
+"""Delete many date disables"""
+type datedisablesDelete {
+  result: [gendatedisableType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+input DatetimeFilter {
+  """Exact match."""
+  exact: DateTime
+  in: [DateTime]
+
+  """Is null."""
+  isnull: Boolean
+
+  """Greater than."""
+  gt: DateTime
+
+  """Greater than or equal to."""
+  gte: DateTime
+
+  """Less than."""
+  lt: DateTime
+
+  """Less than or equal to."""
+  lte: DateTime
+
+  """An exact year match."""
+  year: IntFilter
+
+  """
+  An exact month match. Takes an integer 1 (January) through 12 (December).
+  """
+  month: IntFilter
+
+  """An exact day match."""
+  day: IntFilter
+
+  """
+  A ÔÇÿday of the weekÔÇÖ match. Takes an integer value representing the day of week from 1 (Sunday) to 7 (Saturday).
+  """
+  weekDay: IntFilter
+
+  """An exact hour match. Takes an integer between 0 and 23."""
+  hour: IntFilter
+
+  """An exact minute match. Takes an integer between 0 and 59."""
+  minute: IntFilter
+
+  """an exact second match. Takes an integer between 0 and 59."""
+  second: IntFilter
+}
+
+"""
+Delete account permanently or make `user.is_active=False`.
+
+The behavior is defined on settings.
+Anyway user refresh tokens are revoked.
+
+User must be verified and confirm password.
+"""
+type DeleteAccount {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+type DiaryBonusType {
+  gdate: String
+  bonus: Float
+}
+
+type DiaryRevenueType {
+  gdate: String
+  revenue: Float
+}
+
+type DiaryServRevenueType {
+  service: String
+  revenue: Float
+  count: Int
+}
+
+type ErrorType {
+  field: String!
+  messages: [String!]!
+}
+
+"""
+
+    Errors messages and codes mapped to
+    fields or non fields errors.
+    Example:
+    {
+        field_name: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        other_field: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        nonFieldErrors: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ]
+    }
+    
+"""
+scalar ExpectedErrorType
+
+type File {
+  url: String
+  size: Int
+  filename: String
+}
+
+input FileInput {
+  upload: Upload
+  filename: String
+  content: Binary
+}
+
+input FloatFilter {
+  """Exact match."""
+  exact: Float
+  in: [Float]
+
+  """Is null."""
+  isnull: Boolean
+
+  """Greater than."""
+  gt: Float
+
+  """Greater than or equal to."""
+  gte: Float
+
+  """Less than."""
+  lt: Float
+
+  """Less than or equal to."""
+  lte: Float
+
+  """Containment test."""
+  contains: Float
+
+  """Starts-with."""
+  startswith: Float
+
+  """Ends-with."""
+  endswith: Float
+
+  """regular expression match."""
+  regex: String
+}
+
+input gendatedisableCreateInput {
+  """date"""
+  date: DateTime!
+  isActive: Boolean
+
+  """servicetype"""
+  servicetype: genservicetypeCreateNestedInput
+}
+
+input gendatedisableCreateNestedManyInput {
+  create: [gendatedisableCreateInput]
+  connect: [gendatedisableWhereInput]
+}
+
+type gendatedisableCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: gendatedisableType
+}
+
+type gendatedisableDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input gendatedisableOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """date"""
+  date: OrderEnum
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """servicetype"""
+  servicetype: genservicetypeOrderByInput
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for gendatedisable model"""
+type gendatedisableType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """date"""
+  date: DateTime
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """servicetype"""
+  servicetype: genservicetypeType
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+}
+
+type gendatedisableTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [gendatedisableType]!
+  count: Int
+}
+
+input gendatedisableUpdateInput {
+  """date"""
+  date: DateTime
+  isActive: Boolean
+
+  """servicetype"""
+  servicetype: genservicetypeUpdateNestedInput
+}
+
+input gendatedisableUpdateNestedManyInput {
+  create: [gendatedisableCreateInput]
+  update: [gendatedisableUpdateWithWhereInput]
+  delete: [gendatedisableWhereInput]
+  connect: [gendatedisableWhereInput]
+  disconnect: [gendatedisableWhereInput]
+}
+
+type gendatedisableUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: gendatedisableType
+}
+
+input gendatedisableUpdateWithWhereInput {
+  where: gendatedisableWhereInput
+  input: gendatedisableUpdateInput
+}
+
+input gendatedisableWhereInput {
+  id: IDFilter
+  OR: [gendatedisableWhereInput]
+  AND: [gendatedisableWhereInput]
+  NOT: gendatedisableWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """date"""
+  date: DatetimeFilter
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """servicetype"""
+  servicetype: genservicetypeWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+}
+
+"""
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
+
+input genpromotionCreateInput {
+  """bonus"""
+  bonus: Float
+
+  """ending date"""
+  endingDate: DateTime!
+  genservicepromotionSet: genservicepromotionCreateNestedManyInput
+  isActive: Boolean
+
+  """name"""
+  name: String!
+
+  """starting date"""
+  startingDate: DateTime!
+}
+
+input genpromotionCreateNestedInput {
+  create: genpromotionCreateInput
+  connect: genpromotionWhereInput
+}
+
+input genpromotionCreateNestedManyInput {
+  create: [genpromotionCreateInput]
+  connect: [genpromotionWhereInput]
+}
+
+type genpromotionCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genpromotionType
+}
+
+type genpromotionDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genpromotionOrderByInput {
+  """bonus"""
+  bonus: OrderEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ending date"""
+  endingDate: OrderEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """name"""
+  name: OrderStringEnum
+
+  """starting date"""
+  startingDate: OrderEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for genpromotion model"""
+type genpromotionType {
+  """unique identification field"""
+  id: ID
+
+  """bonus"""
+  bonus: Float
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+
+  """ending date"""
+  endingDate: DateTime
+  genservicepromotionSet(where: genservicepromotionWhereInput, orderBy: [genservicepromotionOrderByInput], limit: Int, offset: Int): genservicepromotionTypeConnection
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """name"""
+  name: String
+
+  """starting date"""
+  startingDate: DateTime
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+}
+
+type genpromotionTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genpromotionType]!
+  count: Int
+}
+
+input genpromotionUpdateInput {
+  """bonus"""
+  bonus: Float
+
+  """ending date"""
+  endingDate: DateTime
+  genservicepromotionSet: genservicepromotionUpdateNestedManyInput
+  isActive: Boolean
+
+  """name"""
+  name: String
+
+  """starting date"""
+  startingDate: DateTime
+}
+
+input genpromotionUpdateNestedInput {
+  create: genpromotionCreateInput
+  update: genpromotionUpdateInput
+  delete: Boolean
+  connect: genpromotionWhereInput
+  disconnect: Boolean
+}
+
+input genpromotionUpdateNestedManyInput {
+  create: [genpromotionCreateInput]
+  update: [genpromotionUpdateWithWhereInput]
+  delete: [genpromotionWhereInput]
+  connect: [genpromotionWhereInput]
+  disconnect: [genpromotionWhereInput]
+}
+
+type genpromotionUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genpromotionType
+}
+
+input genpromotionUpdateWithWhereInput {
+  where: genpromotionWhereInput
+  input: genpromotionUpdateInput
+}
+
+input genpromotionWhereInput {
+  id: IDFilter
+  OR: [genpromotionWhereInput]
+  AND: [genpromotionWhereInput]
+  NOT: genpromotionWhereInput
+
+  """bonus"""
+  bonus: FloatFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """ending date"""
+  endingDate: DatetimeFilter
+  genservicepromotion: genservicepromotionWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """name"""
+  name: StringFilter
+
+  """starting date"""
+  startingDate: DatetimeFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+}
+
+input genrecurrenceCreateInput {
+  """bonus"""
+  bonus: Float
+
+  """days"""
+  days: Int
+  isActive: Boolean
+
+  """recurrence"""
+  recurrence: String!
+  userserviceSet: userserviceCreateNestedManyInput
+}
+
+input genrecurrenceCreateNestedInput {
+  create: genrecurrenceCreateInput
+  connect: genrecurrenceWhereInput
+}
+
+input genrecurrenceCreateNestedManyInput {
+  create: [genrecurrenceCreateInput]
+  connect: [genrecurrenceWhereInput]
+}
+
+type genrecurrenceCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genrecurrenceType
+}
+
+type genrecurrenceDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genrecurrenceOrderByInput {
+  """bonus"""
+  bonus: OrderEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """days"""
+  days: OrderEnum
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """recurrence"""
+  recurrence: OrderStringEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for genrecurrence model"""
+type genrecurrenceType {
+  """unique identification field"""
+  id: ID
+
+  """bonus"""
+  bonus: Float
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """days"""
+  days: Int
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """recurrence"""
+  recurrence: String
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+  userserviceSet(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+}
+
+type genrecurrenceTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genrecurrenceType]!
+  count: Int
+}
+
+input genrecurrenceUpdateInput {
+  """bonus"""
+  bonus: Float
+
+  """days"""
+  days: Int
+  isActive: Boolean
+
+  """recurrence"""
+  recurrence: String
+  userserviceSet: userserviceUpdateNestedManyInput
+}
+
+input genrecurrenceUpdateNestedInput {
+  create: genrecurrenceCreateInput
+  update: genrecurrenceUpdateInput
+  delete: Boolean
+  connect: genrecurrenceWhereInput
+  disconnect: Boolean
+}
+
+input genrecurrenceUpdateNestedManyInput {
+  create: [genrecurrenceCreateInput]
+  update: [genrecurrenceUpdateWithWhereInput]
+  delete: [genrecurrenceWhereInput]
+  connect: [genrecurrenceWhereInput]
+  disconnect: [genrecurrenceWhereInput]
+}
+
+type genrecurrenceUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genrecurrenceType
+}
+
+input genrecurrenceUpdateWithWhereInput {
+  where: genrecurrenceWhereInput
+  input: genrecurrenceUpdateInput
+}
+
+input genrecurrenceWhereInput {
+  id: IDFilter
+  OR: [genrecurrenceWhereInput]
+  AND: [genrecurrenceWhereInput]
+  NOT: genrecurrenceWhereInput
+
+  """bonus"""
+  bonus: FloatFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """days"""
+  days: IntFilter
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """recurrence"""
+  recurrence: StringFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+  userservice: userserviceWhereInput
+}
+
+input genreferralbonusCreateInput {
+  """bonus"""
+  bonus: Float
+  isActive: Boolean
+
+  """level"""
+  level: Int
+}
+
+input genreferralbonusCreateNestedManyInput {
+  create: [genreferralbonusCreateInput]
+  connect: [genreferralbonusWhereInput]
+}
+
+type genreferralbonusCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genreferralbonusType
+}
+
+type genreferralbonusDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genreferralbonusOrderByInput {
+  """bonus"""
+  bonus: OrderEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """level"""
+  level: OrderEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for genreferralbonus model"""
+type genreferralbonusType {
+  """unique identification field"""
+  id: ID
+
+  """bonus"""
+  bonus: Float
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """level"""
+  level: Int
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+}
+
+type genreferralbonusTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genreferralbonusType]!
+  count: Int
+}
+
+input genreferralbonusUpdateInput {
+  """bonus"""
+  bonus: Float
+  isActive: Boolean
+
+  """level"""
+  level: Int
+}
+
+input genreferralbonusUpdateNestedManyInput {
+  create: [genreferralbonusCreateInput]
+  update: [genreferralbonusUpdateWithWhereInput]
+  delete: [genreferralbonusWhereInput]
+  connect: [genreferralbonusWhereInput]
+  disconnect: [genreferralbonusWhereInput]
+}
+
+type genreferralbonusUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genreferralbonusType
+}
+
+input genreferralbonusUpdateWithWhereInput {
+  where: genreferralbonusWhereInput
+  input: genreferralbonusUpdateInput
+}
+
+input genreferralbonusWhereInput {
+  id: IDFilter
+  OR: [genreferralbonusWhereInput]
+  AND: [genreferralbonusWhereInput]
+  NOT: genreferralbonusWhereInput
+
+  """bonus"""
+  bonus: FloatFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """level"""
+  level: IntFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+}
+
+input genserviceconfigCreateInput {
+  genserviceconfigpriceSet: genserviceconfigpriceCreateNestedManyInput
+  isActive: Boolean
+
+  """parameter"""
+  parameter: genserviceparameterCreateNestedInput
+
+  """servicetype"""
+  servicetype: genservicetypeCreateNestedInput
+}
+
+input genserviceconfigCreateNestedInput {
+  create: genserviceconfigCreateInput
+  connect: genserviceconfigWhereInput
+}
+
+input genserviceconfigCreateNestedManyInput {
+  create: [genserviceconfigCreateInput]
+  connect: [genserviceconfigWhereInput]
+}
+
+type genserviceconfigCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceconfigType
+}
+
+type genserviceconfigDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genserviceconfigOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """parameter"""
+  parameter: genserviceparameterOrderByInput
+
+  """servicetype"""
+  servicetype: genservicetypeOrderByInput
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+input genserviceconfigpriceCreateInput {
+  isActive: Boolean
+
+  """price"""
+  price: Float
+
+  """serviceconfig"""
+  serviceconfig: genserviceconfigCreateNestedInput
+
+  """valuemax"""
+  valuemax: Int
+
+  """valuemin"""
+  valuemin: Int
+}
+
+input genserviceconfigpriceCreateNestedManyInput {
+  create: [genserviceconfigpriceCreateInput]
+  connect: [genserviceconfigpriceWhereInput]
+}
+
+type genserviceconfigpriceCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceconfigpriceType
+}
+
+type genserviceconfigpriceDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genserviceconfigpriceOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """price"""
+  price: OrderEnum
+
+  """serviceconfig"""
+  serviceconfig: genserviceconfigOrderByInput
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """valuemax"""
+  valuemax: OrderEnum
+
+  """valuemin"""
+  valuemin: OrderEnum
+}
+
+"""type for genserviceconfigprice model"""
+type genserviceconfigpriceType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """price"""
+  price: Float
+
+  """serviceconfig"""
+  serviceconfig: genserviceconfigType
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+
+  """valuemax"""
+  valuemax: Int
+
+  """valuemin"""
+  valuemin: Int
+}
+
+type genserviceconfigpriceTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genserviceconfigpriceType]!
+  count: Int
+}
+
+input genserviceconfigpriceUpdateInput {
+  isActive: Boolean
+
+  """price"""
+  price: Float
+
+  """serviceconfig"""
+  serviceconfig: genserviceconfigUpdateNestedInput
+
+  """valuemax"""
+  valuemax: Int
+
+  """valuemin"""
+  valuemin: Int
+}
+
+input genserviceconfigpriceUpdateNestedManyInput {
+  create: [genserviceconfigpriceCreateInput]
+  update: [genserviceconfigpriceUpdateWithWhereInput]
+  delete: [genserviceconfigpriceWhereInput]
+  connect: [genserviceconfigpriceWhereInput]
+  disconnect: [genserviceconfigpriceWhereInput]
+}
+
+type genserviceconfigpriceUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceconfigpriceType
+}
+
+input genserviceconfigpriceUpdateWithWhereInput {
+  where: genserviceconfigpriceWhereInput
+  input: genserviceconfigpriceUpdateInput
+}
+
+input genserviceconfigpriceWhereInput {
+  id: IDFilter
+  OR: [genserviceconfigpriceWhereInput]
+  AND: [genserviceconfigpriceWhereInput]
+  NOT: genserviceconfigpriceWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """price"""
+  price: FloatFilter
+
+  """serviceconfig"""
+  serviceconfig: genserviceconfigWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+
+  """valuemax"""
+  valuemax: IntFilter
+
+  """valuemin"""
+  valuemin: IntFilter
+}
+
+"""type for genserviceconfig model"""
+type genserviceconfigType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  genserviceconfigpriceSet(where: genserviceconfigpriceWhereInput, orderBy: [genserviceconfigpriceOrderByInput], limit: Int, offset: Int): genserviceconfigpriceTypeConnection
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """parameter"""
+  parameter: genserviceparameterType
+
+  """servicetype"""
+  servicetype: genservicetypeType
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+}
+
+type genserviceconfigTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genserviceconfigType]!
+  count: Int
+}
+
+input genserviceconfigUpdateInput {
+  genserviceconfigpriceSet: genserviceconfigpriceUpdateNestedManyInput
+  isActive: Boolean
+
+  """parameter"""
+  parameter: genserviceparameterUpdateNestedInput
+
+  """servicetype"""
+  servicetype: genservicetypeUpdateNestedInput
+}
+
+input genserviceconfigUpdateNestedInput {
+  create: genserviceconfigCreateInput
+  update: genserviceconfigUpdateInput
+  delete: Boolean
+  connect: genserviceconfigWhereInput
+  disconnect: Boolean
+}
+
+input genserviceconfigUpdateNestedManyInput {
+  create: [genserviceconfigCreateInput]
+  update: [genserviceconfigUpdateWithWhereInput]
+  delete: [genserviceconfigWhereInput]
+  connect: [genserviceconfigWhereInput]
+  disconnect: [genserviceconfigWhereInput]
+}
+
+type genserviceconfigUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceconfigType
+}
+
+input genserviceconfigUpdateWithWhereInput {
+  where: genserviceconfigWhereInput
+  input: genserviceconfigUpdateInput
+}
+
+input genserviceconfigWhereInput {
+  id: IDFilter
+  OR: [genserviceconfigWhereInput]
+  AND: [genserviceconfigWhereInput]
+  NOT: genserviceconfigWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+  genserviceconfigprice: genserviceconfigpriceWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """parameter"""
+  parameter: genserviceparameterWhereInput
+
+  """servicetype"""
+  servicetype: genservicetypeWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+}
+
+input genserviceparameterCreateInput {
+  genserviceconfigSet: genserviceconfigCreateNestedManyInput
+  isActive: Boolean
+
+  """parameter"""
+  parameter: String!
+  servicetype: genservicetypeCreateNestedManyInput
+  userserviceSet: userserviceCreateNestedManyInput
+  userserviceconfigSet: userserviceconfigCreateNestedManyInput
+}
+
+input genserviceparameterCreateNestedInput {
+  create: genserviceparameterCreateInput
+  connect: genserviceparameterWhereInput
+}
+
+input genserviceparameterCreateNestedManyInput {
+  create: [genserviceparameterCreateInput]
+  connect: [genserviceparameterWhereInput]
+}
+
+type genserviceparameterCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceparameterType
+}
+
+type genserviceparameterDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genserviceparameterOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """parameter"""
+  parameter: OrderStringEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for genserviceparameter model"""
+type genserviceparameterType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  genserviceconfigSet(where: genserviceconfigWhereInput, orderBy: [genserviceconfigOrderByInput], limit: Int, offset: Int): genserviceconfigTypeConnection
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """parameter"""
+  parameter: String
+  servicetype(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+  userserviceSet(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  userserviceconfigSet(where: userserviceconfigWhereInput, orderBy: [userserviceconfigOrderByInput], limit: Int, offset: Int): userserviceconfigTypeConnection
+}
+
+type genserviceparameterTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genserviceparameterType]!
+  count: Int
+}
+
+input genserviceparameterUpdateInput {
+  genserviceconfigSet: genserviceconfigUpdateNestedManyInput
+  isActive: Boolean
+
+  """parameter"""
+  parameter: String
+  servicetype: genservicetypeUpdateNestedManyInput
+  userserviceSet: userserviceUpdateNestedManyInput
+  userserviceconfigSet: userserviceconfigUpdateNestedManyInput
+}
+
+input genserviceparameterUpdateNestedInput {
+  create: genserviceparameterCreateInput
+  update: genserviceparameterUpdateInput
+  delete: Boolean
+  connect: genserviceparameterWhereInput
+  disconnect: Boolean
+}
+
+input genserviceparameterUpdateNestedManyInput {
+  create: [genserviceparameterCreateInput]
+  update: [genserviceparameterUpdateWithWhereInput]
+  delete: [genserviceparameterWhereInput]
+  connect: [genserviceparameterWhereInput]
+  disconnect: [genserviceparameterWhereInput]
+}
+
+type genserviceparameterUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceparameterType
+}
+
+input genserviceparameterUpdateWithWhereInput {
+  where: genserviceparameterWhereInput
+  input: genserviceparameterUpdateInput
+}
+
+input genserviceparameterWhereInput {
+  id: IDFilter
+  OR: [genserviceparameterWhereInput]
+  AND: [genserviceparameterWhereInput]
+  NOT: genserviceparameterWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+  genserviceconfig: genserviceconfigWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """parameter"""
+  parameter: StringFilter
+  servicetype: genservicetypeWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+  userservice: userserviceWhereInput
+  userserviceconfig: userserviceconfigWhereInput
+}
+
+input genservicepromotionCreateInput {
+  """bonus"""
+  bonus: Float
+  isActive: Boolean
+
+  """promotion"""
+  promotion: genpromotionCreateNestedInput
+
+  """servicetype"""
+  servicetype: genservicetypeCreateNestedInput
+}
+
+input genservicepromotionCreateNestedManyInput {
+  create: [genservicepromotionCreateInput]
+  connect: [genservicepromotionWhereInput]
+}
+
+type genservicepromotionCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genservicepromotionType
+}
+
+type genservicepromotionDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genservicepromotionOrderByInput {
+  """bonus"""
+  bonus: OrderEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """promotion"""
+  promotion: genpromotionOrderByInput
+
+  """servicetype"""
+  servicetype: genservicetypeOrderByInput
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for genservicepromotion model"""
+type genservicepromotionType {
+  """unique identification field"""
+  id: ID
+
+  """bonus"""
+  bonus: Float
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """promotion"""
+  promotion: genpromotionType
+
+  """servicetype"""
+  servicetype: genservicetypeType
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+}
+
+type genservicepromotionTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genservicepromotionType]!
+  count: Int
+}
+
+input genservicepromotionUpdateInput {
+  """bonus"""
+  bonus: Float
+  isActive: Boolean
+
+  """promotion"""
+  promotion: genpromotionUpdateNestedInput
+
+  """servicetype"""
+  servicetype: genservicetypeUpdateNestedInput
+}
+
+input genservicepromotionUpdateNestedManyInput {
+  create: [genservicepromotionCreateInput]
+  update: [genservicepromotionUpdateWithWhereInput]
+  delete: [genservicepromotionWhereInput]
+  connect: [genservicepromotionWhereInput]
+  disconnect: [genservicepromotionWhereInput]
+}
+
+type genservicepromotionUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genservicepromotionType
+}
+
+input genservicepromotionUpdateWithWhereInput {
+  where: genservicepromotionWhereInput
+  input: genservicepromotionUpdateInput
+}
+
+input genservicepromotionWhereInput {
+  id: IDFilter
+  OR: [genservicepromotionWhereInput]
+  AND: [genservicepromotionWhereInput]
+  NOT: genservicepromotionWhereInput
+
+  """bonus"""
+  bonus: FloatFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """promotion"""
+  promotion: genpromotionWhereInput
+
+  """servicetype"""
+  servicetype: genservicetypeWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+}
+
+input genserviceteamCreateInput {
+  """abbreviation"""
+  abbreviation: String
+  isActive: Boolean
+  managers: UserCreateNestedManyInput
+  servicetype: genservicetypeCreateNestedManyInput
+
+  """team"""
+  team: String!
+  userserviceSet: userserviceCreateNestedManyInput
+}
+
+input genserviceteamCreateNestedInput {
+  create: genserviceteamCreateInput
+  connect: genserviceteamWhereInput
+}
+
+input genserviceteamCreateNestedManyInput {
+  create: [genserviceteamCreateInput]
+  connect: [genserviceteamWhereInput]
+}
+
+type genserviceteamCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceteamType
+}
+
+type genserviceteamDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genserviceteamOrderByInput {
+  """abbreviation"""
+  abbreviation: OrderStringEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """team"""
+  team: OrderStringEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for genserviceteam model"""
+type genserviceteamType {
+  """unique identification field"""
+  id: ID
+
+  """abbreviation"""
+  abbreviation: String
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+  managers(where: UserWhereInput, orderBy: [UserOrderByInput], limit: Int, offset: Int): UserTypeConnection
+  servicetype(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+
+  """team"""
+  team: String
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+  userserviceSet(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+}
+
+type genserviceteamTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genserviceteamType]!
+  count: Int
+}
+
+input genserviceteamUpdateInput {
+  """abbreviation"""
+  abbreviation: String
+  isActive: Boolean
+  managers: UserUpdateNestedManyInput
+  servicetype: genservicetypeUpdateNestedManyInput
+
+  """team"""
+  team: String
+  userserviceSet: userserviceUpdateNestedManyInput
+}
+
+input genserviceteamUpdateNestedInput {
+  create: genserviceteamCreateInput
+  update: genserviceteamUpdateInput
+  delete: Boolean
+  connect: genserviceteamWhereInput
+  disconnect: Boolean
+}
+
+input genserviceteamUpdateNestedManyInput {
+  create: [genserviceteamCreateInput]
+  update: [genserviceteamUpdateWithWhereInput]
+  delete: [genserviceteamWhereInput]
+  connect: [genserviceteamWhereInput]
+  disconnect: [genserviceteamWhereInput]
+}
+
+type genserviceteamUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genserviceteamType
+}
+
+input genserviceteamUpdateWithWhereInput {
+  where: genserviceteamWhereInput
+  input: genserviceteamUpdateInput
+}
+
+input genserviceteamWhereInput {
+  id: IDFilter
+  OR: [genserviceteamWhereInput]
+  AND: [genserviceteamWhereInput]
+  NOT: genserviceteamWhereInput
+
+  """abbreviation"""
+  abbreviation: StringFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+  managers: UserWhereInput
+  servicetype: genservicetypeWhereInput
+
+  """team"""
+  team: StringFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+  userservice: userserviceWhereInput
+}
+
+input genservicetypeCreateInput {
+  H00: Boolean
+  H01: Boolean
+  H02: Boolean
+  H03: Boolean
+  H04: Boolean
+  H05: Boolean
+  H06: Boolean
+  H07: Boolean
+  H08: Boolean
+  H09: Boolean
+  H10: Boolean
+  H11: Boolean
+  H12: Boolean
+  H13: Boolean
+  H14: Boolean
+  H15: Boolean
+  H16: Boolean
+  H17: Boolean
+  H18: Boolean
+  H19: Boolean
+  H20: Boolean
+  H21: Boolean
+  H22: Boolean
+  H23: Boolean
+
+  """abbreviation"""
+  abbreviation: String
+
+  """description"""
+  description: String
+
+  """duration"""
+  duration: Int
+  fri: Boolean
+  gendatedisableSet: gendatedisableCreateNestedManyInput
+  genserviceconfigSet: genserviceconfigCreateNestedManyInput
+  genserviceparameterSet: genserviceparameterCreateNestedManyInput
+  genservicepromotionSet: genservicepromotionCreateNestedManyInput
+  genserviceteamSet: genserviceteamCreateNestedManyInput
+  genservicetypeSet: genservicetypeCreateNestedManyInput
+
+  """img"""
+  img: FileInput
+  isActive: Boolean
+  managers: UserCreateNestedManyInput
+  mon: Boolean
+
+  """price"""
+  price: Float
+
+  """root"""
+  root: genservicetypeCreateNestedInput
+  sat: Boolean
+
+  """servicetype"""
+  servicetype: String!
+  son: Boolean
+  thu: Boolean
+  tue: Boolean
+
+  """txt"""
+  txt: FileInput
+  userserviceSet: userserviceCreateNestedManyInput
+  wed: Boolean
+}
+
+input genservicetypeCreateNestedInput {
+  create: genservicetypeCreateInput
+  connect: genservicetypeWhereInput
+}
+
+input genservicetypeCreateNestedManyInput {
+  create: [genservicetypeCreateInput]
+  connect: [genservicetypeWhereInput]
+}
+
+type genservicetypeCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genservicetypeType
+}
+
+type genservicetypeDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input genservicetypeOrderByInput {
+  """H00"""
+  H00: OrderEnum
+
+  """H01"""
+  H01: OrderEnum
+
+  """H02"""
+  H02: OrderEnum
+
+  """H03"""
+  H03: OrderEnum
+
+  """H04"""
+  H04: OrderEnum
+
+  """H05"""
+  H05: OrderEnum
+
+  """H06"""
+  H06: OrderEnum
+
+  """H07"""
+  H07: OrderEnum
+
+  """H08"""
+  H08: OrderEnum
+
+  """H09"""
+  H09: OrderEnum
+
+  """H10"""
+  H10: OrderEnum
+
+  """H11"""
+  H11: OrderEnum
+
+  """H12"""
+  H12: OrderEnum
+
+  """H13"""
+  H13: OrderEnum
+
+  """H14"""
+  H14: OrderEnum
+
+  """H15"""
+  H15: OrderEnum
+
+  """H16"""
+  H16: OrderEnum
+
+  """H17"""
+  H17: OrderEnum
+
+  """H18"""
+  H18: OrderEnum
+
+  """H19"""
+  H19: OrderEnum
+
+  """H20"""
+  H20: OrderEnum
+
+  """H21"""
+  H21: OrderEnum
+
+  """H22"""
+  H22: OrderEnum
+
+  """H23"""
+  H23: OrderEnum
+
+  """abbreviation"""
+  abbreviation: OrderStringEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """description"""
+  description: OrderStringEnum
+
+  """duration"""
+  duration: OrderEnum
+
+  """fri"""
+  fri: OrderEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """img"""
+  img: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """mon"""
+  mon: OrderEnum
+
+  """price"""
+  price: OrderEnum
+
+  """root"""
+  root: genservicetypeOrderByInput
+
+  """sat"""
+  sat: OrderEnum
+
+  """servicetype"""
+  servicetype: OrderStringEnum
+
+  """son"""
+  son: OrderEnum
+
+  """thu"""
+  thu: OrderEnum
+
+  """tue"""
+  tue: OrderEnum
+
+  """txt"""
+  txt: OrderEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """wed"""
+  wed: OrderEnum
+}
+
+"""type for genservicetype model"""
+type genservicetypeType {
+  """unique identification field"""
+  id: ID
+  H00: Boolean
+  H01: Boolean
+  H02: Boolean
+  H03: Boolean
+  H04: Boolean
+  H05: Boolean
+  H06: Boolean
+  H07: Boolean
+  H08: Boolean
+  H09: Boolean
+  H10: Boolean
+  H11: Boolean
+  H12: Boolean
+  H13: Boolean
+  H14: Boolean
+  H15: Boolean
+  H16: Boolean
+  H17: Boolean
+  H18: Boolean
+  H19: Boolean
+  H20: Boolean
+  H21: Boolean
+  H22: Boolean
+  H23: Boolean
+
+  """abbreviation"""
+  abbreviation: String
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+
+  """description"""
+  description: String
+
+  """duration"""
+  duration: Int
+  fri: Boolean
+  gendatedisableSet(where: gendatedisableWhereInput, orderBy: [gendatedisableOrderByInput], limit: Int, offset: Int): gendatedisableTypeConnection
+  genserviceconfigSet(where: genserviceconfigWhereInput, orderBy: [genserviceconfigOrderByInput], limit: Int, offset: Int): genserviceconfigTypeConnection
+  genserviceparameterSet(where: genserviceparameterWhereInput, orderBy: [genserviceparameterOrderByInput], limit: Int, offset: Int): genserviceparameterTypeConnection
+  genservicepromotionSet(where: genservicepromotionWhereInput, orderBy: [genservicepromotionOrderByInput], limit: Int, offset: Int): genservicepromotionTypeConnection
+  genserviceteamSet(where: genserviceteamWhereInput, orderBy: [genserviceteamOrderByInput], limit: Int, offset: Int): genserviceteamTypeConnection
+  genservicetypeSet(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+
+  """img"""
+  img: File
+  isActive: Boolean
+  isDeleted: Boolean
+  managers(where: UserWhereInput, orderBy: [UserOrderByInput], limit: Int, offset: Int): UserTypeConnection
+  mon: Boolean
+
+  """price"""
+  price: Float
+
+  """root"""
+  root: genservicetypeType
+  sat: Boolean
+
+  """servicetype"""
+  servicetype: String
+  son: Boolean
+  thu: Boolean
+  tue: Boolean
+
+  """txt"""
+  txt: File
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+  userserviceSet(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  wed: Boolean
+  configprice: String
+}
+
+type genservicetypeTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [genservicetypeType]!
+  count: Int
+}
+
+input genservicetypeUpdateInput {
+  H00: Boolean
+  H01: Boolean
+  H02: Boolean
+  H03: Boolean
+  H04: Boolean
+  H05: Boolean
+  H06: Boolean
+  H07: Boolean
+  H08: Boolean
+  H09: Boolean
+  H10: Boolean
+  H11: Boolean
+  H12: Boolean
+  H13: Boolean
+  H14: Boolean
+  H15: Boolean
+  H16: Boolean
+  H17: Boolean
+  H18: Boolean
+  H19: Boolean
+  H20: Boolean
+  H21: Boolean
+  H22: Boolean
+  H23: Boolean
+
+  """abbreviation"""
+  abbreviation: String
+
+  """description"""
+  description: String
+
+  """duration"""
+  duration: Int
+  fri: Boolean
+  gendatedisableSet: gendatedisableUpdateNestedManyInput
+  genserviceconfigSet: genserviceconfigUpdateNestedManyInput
+  genserviceparameterSet: genserviceparameterUpdateNestedManyInput
+  genservicepromotionSet: genservicepromotionUpdateNestedManyInput
+  genserviceteamSet: genserviceteamUpdateNestedManyInput
+  genservicetypeSet: genservicetypeUpdateNestedManyInput
+
+  """img"""
+  img: FileInput
+  isActive: Boolean
+  managers: UserUpdateNestedManyInput
+  mon: Boolean
+
+  """price"""
+  price: Float
+
+  """root"""
+  root: genservicetypeUpdateNestedInput
+  sat: Boolean
+
+  """servicetype"""
+  servicetype: String
+  son: Boolean
+  thu: Boolean
+  tue: Boolean
+
+  """txt"""
+  txt: FileInput
+  userserviceSet: userserviceUpdateNestedManyInput
+  wed: Boolean
+}
+
+input genservicetypeUpdateNestedInput {
+  create: genservicetypeCreateInput
+  update: genservicetypeUpdateInput
+  delete: Boolean
+  connect: genservicetypeWhereInput
+  disconnect: Boolean
+}
+
+input genservicetypeUpdateNestedManyInput {
+  create: [genservicetypeCreateInput]
+  update: [genservicetypeUpdateWithWhereInput]
+  delete: [genservicetypeWhereInput]
+  connect: [genservicetypeWhereInput]
+  disconnect: [genservicetypeWhereInput]
+}
+
+type genservicetypeUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: genservicetypeType
+}
+
+input genservicetypeUpdateWithWhereInput {
+  where: genservicetypeWhereInput
+  input: genservicetypeUpdateInput
+}
+
+input genservicetypeWhereInput {
+  id: IDFilter
+  OR: [genservicetypeWhereInput]
+  AND: [genservicetypeWhereInput]
+  NOT: genservicetypeWhereInput
+
+  """H00"""
+  H00: BooleanFilter
+
+  """H01"""
+  H01: BooleanFilter
+
+  """H02"""
+  H02: BooleanFilter
+
+  """H03"""
+  H03: BooleanFilter
+
+  """H04"""
+  H04: BooleanFilter
+
+  """H05"""
+  H05: BooleanFilter
+
+  """H06"""
+  H06: BooleanFilter
+
+  """H07"""
+  H07: BooleanFilter
+
+  """H08"""
+  H08: BooleanFilter
+
+  """H09"""
+  H09: BooleanFilter
+
+  """H10"""
+  H10: BooleanFilter
+
+  """H11"""
+  H11: BooleanFilter
+
+  """H12"""
+  H12: BooleanFilter
+
+  """H13"""
+  H13: BooleanFilter
+
+  """H14"""
+  H14: BooleanFilter
+
+  """H15"""
+  H15: BooleanFilter
+
+  """H16"""
+  H16: BooleanFilter
+
+  """H17"""
+  H17: BooleanFilter
+
+  """H18"""
+  H18: BooleanFilter
+
+  """H19"""
+  H19: BooleanFilter
+
+  """H20"""
+  H20: BooleanFilter
+
+  """H21"""
+  H21: BooleanFilter
+
+  """H22"""
+  H22: BooleanFilter
+
+  """H23"""
+  H23: BooleanFilter
+
+  """abbreviation"""
+  abbreviation: StringFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """description"""
+  description: StringFilter
+
+  """duration"""
+  duration: IntFilter
+
+  """fri"""
+  fri: BooleanFilter
+  gendatedisable: gendatedisableWhereInput
+  genserviceconfig: genserviceconfigWhereInput
+  genserviceparameter: genserviceparameterWhereInput
+  genservicepromotion: genservicepromotionWhereInput
+  genserviceteam: genserviceteamWhereInput
+  genservicetype: genservicetypeWhereInput
+
+  """img"""
+  img: StringFilter
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+  managers: UserWhereInput
+
+  """mon"""
+  mon: BooleanFilter
+
+  """price"""
+  price: FloatFilter
+
+  """root"""
+  root: genservicetypeWhereInput
+
+  """sat"""
+  sat: BooleanFilter
+
+  """servicetype"""
+  servicetype: StringFilter
+
+  """son"""
+  son: BooleanFilter
+
+  """thu"""
+  thu: BooleanFilter
+
+  """tue"""
+  tue: BooleanFilter
+
+  """txt"""
+  txt: StringFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+  userservice: userserviceWhereInput
+
+  """wed"""
+  wed: BooleanFilter
+}
+
+input gensettingCreateInput {
+  isActive: Boolean
+
+  """key"""
+  key: String!
+
+  """value"""
+  value: String!
+}
+
+input gensettingCreateNestedManyInput {
+  create: [gensettingCreateInput]
+  connect: [gensettingWhereInput]
+}
+
+type gensettingCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: gensettingType
+}
+
+type gensettingDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input gensettingOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """key"""
+  key: OrderStringEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """value"""
+  value: OrderStringEnum
+}
+
+"""type for gensetting model"""
+type gensettingType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """key"""
+  key: String
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+
+  """value"""
+  value: String
+}
+
+type gensettingTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [gensettingType]!
+  count: Int
+}
+
+input gensettingUpdateInput {
+  isActive: Boolean
+
+  """key"""
+  key: String
+
+  """value"""
+  value: String
+}
+
+input gensettingUpdateNestedManyInput {
+  create: [gensettingCreateInput]
+  update: [gensettingUpdateWithWhereInput]
+  delete: [gensettingWhereInput]
+  connect: [gensettingWhereInput]
+  disconnect: [gensettingWhereInput]
+}
+
+type gensettingUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: gensettingType
+}
+
+input gensettingUpdateWithWhereInput {
+  where: gensettingWhereInput
+  input: gensettingUpdateInput
+}
+
+input gensettingWhereInput {
+  id: IDFilter
+  OR: [gensettingWhereInput]
+  AND: [gensettingWhereInput]
+  NOT: gensettingWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """key"""
+  key: StringFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+
+  """value"""
+  value: StringFilter
+}
+
+input IDFilter {
+  """Exact match."""
+  exact: ID
+  in: [ID]
+
+  """Is null."""
+  isnull: Boolean
+}
+
+input IntFilter {
+  """Exact match."""
+  exact: Int
+  in: [Int]
+
+  """Is null."""
+  isnull: Boolean
+
+  """Greater than."""
+  gt: Int
+
+  """Greater than or equal to."""
+  gte: Int
+
+  """Less than."""
+  lt: Int
+
+  """Less than or equal to."""
+  lte: Int
+
+  """Containment test."""
+  contains: Int
+
+  """Starts-with."""
+  startswith: Int
+
+  """Ends-with."""
+  endswith: Int
+
+  """regular expression match."""
+  regex: String
+}
+
+type KPISummaryType {
+  startDate: Date
+  endDate: Date
+  uncheckReservations: [userserviceType]
+  totalUncheckReservations: Int
+  totalSignup: Int
+  totalReservations: Int
+  totalBonusRecurrence: Float
+  totalBonusWallet: Float
+  totalBonusNewer: Float
+  totalBonusPromotions: Float
+  countBonusRecurrence: Float
+  countBonusWallet: Float
+  countBonusNewer: Float
+  countBonusPromotions: Float
+  diaryRevenue: [DiaryRevenueType]
+  diaryServRevenue: [DiaryServRevenueType]
+  diaryBonus: [DiaryBonusType]
+  dataStatusService: [dataStatusServiceType]
+  countUserServ: Int
+  countUserServRec: Int
+  rating1: Int
+  rating2: Int
+  rating3: Int
+  rating4: Int
+  rating5: Int
+}
+
+type Mutation {
+  settingCreate(input: gensettingCreateInput!): gensettingCreatePayload
+  settingUpdate(input: gensettingUpdateInput!, where: gensettingWhereInput!): gensettingUpdatePayload
+  settingDelete(where: gensettingWhereInput!): gensettingDeletePayload
+
+  """Delete many settings"""
+  settingsDelete(ids: [ID]): settingsDelete
+  servicetypeCreate(input: genservicetypeCreateInput!): genservicetypeCreatePayload
+  servicetypeUpdate(input: genservicetypeUpdateInput!, where: genservicetypeWhereInput!): genservicetypeUpdatePayload
+  servicetypeDelete(where: genservicetypeWhereInput!): genservicetypeDeletePayload
+
+  """Delete many service types"""
+  servicetypesDelete(ids: [ID]): servicetypesDelete
+  datedisableCreate(input: gendatedisableCreateInput!): gendatedisableCreatePayload
+  datedisableUpdate(input: gendatedisableUpdateInput!, where: gendatedisableWhereInput!): gendatedisableUpdatePayload
+  datedisableDelete(where: gendatedisableWhereInput!): gendatedisableDeletePayload
+
+  """Delete many date disables"""
+  datedisablesDelete(ids: [ID]): datedisablesDelete
+  serviceteamCreate(input: genserviceteamCreateInput!): genserviceteamCreatePayload
+  serviceteamUpdate(input: genserviceteamUpdateInput!, where: genserviceteamWhereInput!): genserviceteamUpdatePayload
+  serviceteamDelete(where: genserviceteamWhereInput!): genserviceteamDeletePayload
+
+  """Delete many service teams"""
+  serviceteamsDelete(ids: [ID]): serviceteamsDelete
+  referralbonusCreate(input: genreferralbonusCreateInput!): genreferralbonusCreatePayload
+  referralbonusUpdate(input: genreferralbonusUpdateInput!, where: genreferralbonusWhereInput!): genreferralbonusUpdatePayload
+  referralbonusDelete(where: genreferralbonusWhereInput!): genreferralbonusDeletePayload
+
+  """Delete many referrals bonuses"""
+  referralbonusesDelete(ids: [ID]): referralbonusesDelete
+  recurrenceCreate(input: genrecurrenceCreateInput!): genrecurrenceCreatePayload
+  recurrenceUpdate(input: genrecurrenceUpdateInput!, where: genrecurrenceWhereInput!): genrecurrenceUpdatePayload
+  recurrenceDelete(where: genrecurrenceWhereInput!): genrecurrenceDeletePayload
+
+  """Delete many recurrences"""
+  recurrencesDelete(ids: [ID]): recurrencesDelete
+  serviceparameterCreate(input: genserviceparameterCreateInput!): genserviceparameterCreatePayload
+  serviceparameterUpdate(input: genserviceparameterUpdateInput!, where: genserviceparameterWhereInput!): genserviceparameterUpdatePayload
+  serviceparameterDelete(where: genserviceparameterWhereInput!): genserviceparameterDeletePayload
+
+  """Delete many service parameters"""
+  serviceparametersDelete(ids: [ID]): serviceparametersDelete
+  servicetypeconfigCreate(input: genserviceconfigCreateInput!): genserviceconfigCreatePayload
+  servicetypeconfigUpdate(input: genserviceconfigUpdateInput!, where: genserviceconfigWhereInput!): genserviceconfigUpdatePayload
+  servicetypeconfigDelete(where: genserviceconfigWhereInput!): genserviceconfigDeletePayload
+
+  """Delete many service configs"""
+  servicetypeconfigsDelete(ids: [ID]): servicetypeconfigsDelete
+  serviceconfigpriceCreate(input: genserviceconfigpriceCreateInput!): genserviceconfigpriceCreatePayload
+  serviceconfigpriceUpdate(input: genserviceconfigpriceUpdateInput!, where: genserviceconfigpriceWhereInput!): genserviceconfigpriceUpdatePayload
+  serviceconfigpriceDelete(where: genserviceconfigpriceWhereInput!): genserviceconfigpriceDeletePayload
+
+  """Delete many service config prices"""
+  serviceconfigpricesDelete(ids: [ID]): serviceconfigpricesDelete
+  promotionCreate(input: genpromotionCreateInput!): genpromotionCreatePayload
+  promotionUpdate(input: genpromotionUpdateInput!, where: genpromotionWhereInput!): genpromotionUpdatePayload
+  promotionDelete(where: genpromotionWhereInput!): genpromotionDeletePayload
+
+  """Delete many promotions"""
+  promotionsDelete(ids: [ID]): promotionsDelete
+  servicepromotionCreate(input: genservicepromotionCreateInput!): genservicepromotionCreatePayload
+  servicepromotionUpdate(input: genservicepromotionUpdateInput!, where: genservicepromotionWhereInput!): genservicepromotionUpdatePayload
+  servicepromotionDelete(where: genservicepromotionWhereInput!): genservicepromotionDeletePayload
+
+  """Delete many service promotions"""
+  servicepromotionsDelete(ids: [ID]): servicepromotionsDelete
+
+  """
+  Register user with fields defined in the settings.
+  
+  If the email field of the user model is part of the
+  registration fields (default), check if there is
+  no user with that email or as a secondary email.
+  
+  If it exists, it does not register the user,
+  even if the email field is not defined as unique
+  (default of the default django user model).
+  
+  When creating the user, it also creates a `UserStatus`
+  related to that user, making it possible to track
+  if the user is archived, verified and has a secondary
+  email.
+  
+  Send account verification email.
+  
+  If allowed to not verified users login, return token.
+  """
+  register(refby: String, email: String!, username: String!, password1: String!, password2: String!): Register
+
+  """
+  Verify user account.
+  
+  Receive the token that was sent by email.
+  If the token is valid, make the user verified
+  by making the `user.status.verified` field true.
+  """
+  verifyAccount(token: String!): VerifyAccount
+
+  """
+  Sends activation email.
+  
+  It is called resend because theoretically
+  the first activation email was sent when
+  the user registered.
+  
+  If there is no user with the requested email,
+  a successful response is returned.
+  """
+  resendActivationEmail(email: String!): ResendActivationEmail
+
+  """
+  Send password reset email.
+  
+  For non verified users, send an activation
+  email instead.
+  
+  Accepts both primary and secondary email.
+  
+  If there is no user with the requested email,
+  a successful response is returned.
+  """
+  sendPasswordResetEmail(email: String!): SendPasswordResetEmail
+
+  """
+  Change user password without old password.
+  
+  Receive the token that was sent by email.
+  
+  If token and new passwords are valid, update
+  user password and in case of using refresh
+  tokens, revoke all of them.
+  
+  Also, if user has not been verified yet, verify it.
+  """
+  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
+
+  """
+  Set user password - for passwordless registration
+  
+  Receive the token that was sent by email.
+  
+  If token and new passwords are valid, set
+  user password and in case of using refresh
+  tokens, revoke all of them.
+  
+  Also, if user has not been verified yet, verify it.
+  """
+  passwordSet(token: String!, newPassword1: String!, newPassword2: String!): PasswordSet
+
+  """
+  Change account password when user knows the old password.
+  
+  A new token and refresh token are sent. User must be verified.
+  """
+  passwordChange(oldPassword: String!, newPassword1: String!, newPassword2: String!): PasswordChange
+
+  """
+  Archive account and revoke refresh tokens.
+  
+  User must be verified and confirm password.
+  """
+  archiveAccount(password: String!): ArchiveAccount
+
+  """
+  Delete account permanently or make `user.is_active=False`.
+  
+  The behavior is defined on settings.
+  Anyway user refresh tokens are revoked.
+  
+  User must be verified and confirm password.
+  """
+  deleteAccount(password: String!): DeleteAccount
+
+  """
+  Update user model fields, defined on settings.
+  
+  User must be verified.
+  """
+  updateAccount(firstName: String, lastName: String, country: String, phone: String): UpdateAccount
+
+  """
+  Send activation to secondary email.
+  
+  User must be verified and confirm password.
+  """
+  sendSecondaryEmailActivation(email: String!, password: String!): SendSecondaryEmailActivation
+
+  """
+  Verify user secondary email.
+  
+  Receive the token that was sent by email.
+  User is already verified when using this mutation.
+  
+  If the token is valid, add the secondary email
+  to `user.status.secondary_email` field.
+  
+  Note that until the secondary email is verified,
+  it has not been saved anywhere beyond the token,
+  so it can still be used to create a new account.
+  After being verified, it will no longer be available.
+  """
+  verifySecondaryEmail(token: String!): VerifySecondaryEmail
+
+  """
+  Swap between primary and secondary emails.
+  
+  Require password confirmation.
+  """
+  swapEmails(password: String!): SwapEmails
+
+  """Allows update custom roles to  users."""
+  updateRoles(isactive: Boolean, isadmin: Boolean, ismanager: Boolean, username: String): UpdateRoles
+  login(password: String!, email: String, username: String): CustomObtainJSONWebToken
+
+  """Same as `grapgql_jwt` implementation, with standard output."""
+  verifyToken(token: String): VerifyToken
+
+  """Same as `grapgql_jwt` implementation, with standard output."""
+  refreshToken(refreshToken: String): RefreshToken
+
+  """Same as `grapgql_jwt` implementation, with standard output."""
+  revokeToken(refreshToken: String): RevokeToken
+
+  """Social Auth Mutation"""
+  socialAuth(accessToken: String!, provider: String!): SocialAuth
+
+  """Social Auth for JSON Web Token (JWT)"""
+  socialJwtAuth(accessToken: String!, provider: String!): SocialAuthJWT
+  addressCreate(input: useraddressCreateInput!): useraddressCreatePayload
+  addressUpdate(input: useraddressUpdateInput!, where: useraddressWhereInput!): useraddressUpdatePayload
+  addressDelete(where: useraddressWhereInput!): useraddressDeletePayload
+
+  """Delete many user address"""
+  adressesDelete(ids: [ID]): addressesDelete
+  serviceCreate(input: userserviceCreateInput!): userserviceCreatePayload
+  serviceUpdate(input: userserviceUpdateInput!, where: userserviceWhereInput!): userserviceUpdatePayload
+  serviceDelete(where: userserviceWhereInput!): userserviceDeletePayload
+
+  """Close a user service"""
+  serviceClose(comments: String, id: ID, rating: Int): serviceClose
+
+  """Cancel a user service"""
+  serviceCancel(comments: String, id: ID): serviceCancel
+
+  """Pay a user service"""
+  servicePay(id: ID): servicePay
+  serviceconfigCreate(input: userserviceconfigCreateInput!): userserviceconfigCreatePayload
+  serviceconfigUpdate(input: userserviceconfigUpdateInput!, where: userserviceconfigWhereInput!): userserviceconfigUpdatePayload
+  serviceconfigDelete(where: userserviceconfigWhereInput!): userserviceconfigDeletePayload
+}
+
+"""An object with an ID"""
+interface Node {
+  """The ID of the object"""
+  id: ID!
+}
+
+enum OrderEnum {
+  ASC
+  DESC
+}
+
+enum OrderStringEnum {
+  ASC
+  DESC
+  IASC
+  IDESC
+}
+
+"""
+The Relay compliant `PageInfo` type, containing data necessary to paginate this connection.
+"""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+"""
+Change account password when user knows the old password.
+
+A new token and refresh token are sent. User must be verified.
+"""
+type PasswordChange {
+  success: Boolean
+  errors: ExpectedErrorType
+  refreshToken: String
+  token: String
+}
+
+"""
+Change user password without old password.
+
+Receive the token that was sent by email.
+
+If token and new passwords are valid, update
+user password and in case of using refresh
+tokens, revoke all of them.
+
+Also, if user has not been verified yet, verify it.
+"""
+type PasswordReset {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Set user password - for passwordless registration
+
+Receive the token that was sent by email.
+
+If token and new passwords are valid, set
+user password and in case of using refresh
+tokens, revoke all of them.
+
+Also, if user has not been verified yet, verify it.
+"""
+type PasswordSet {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+type priceconfigType {
+  msg: String
+}
+
+"""Delete many promotions"""
+type promotionsDelete {
+  result: [genpromotionType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+type Query {
+  ratingSummary: RatingSummaryType
+  kpiSummary(startDate: Date, endDate: Date, aggDate: Int): KPISummaryType
+  currentranges: [genreferralbonusType]
+  newerBonus: Int
+  currentpromotions: [genpromotionType]
+  priceconfig(id: Int): priceconfigType
+  setting(where: gensettingWhereInput!): gensettingType
+  settings(where: gensettingWhereInput, orderBy: [gensettingOrderByInput], limit: Int, offset: Int): gensettingTypeConnection
+  servicetype(where: genservicetypeWhereInput!): genservicetypeType
+  servicetypes(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+  serviceteam(where: genserviceteamWhereInput!): genserviceteamType
+  serviceteams(where: genserviceteamWhereInput, orderBy: [genserviceteamOrderByInput], limit: Int, offset: Int): genserviceteamTypeConnection
+  referralbonus(where: genreferralbonusWhereInput!): genreferralbonusType
+  referralbonuses(where: genreferralbonusWhereInput, orderBy: [genreferralbonusOrderByInput], limit: Int, offset: Int): genreferralbonusTypeConnection
+  recurrence(where: genrecurrenceWhereInput!): genrecurrenceType
+  recurrences(where: genrecurrenceWhereInput, orderBy: [genrecurrenceOrderByInput], limit: Int, offset: Int): genrecurrenceTypeConnection
+  serviceparameter(where: genserviceparameterWhereInput!): genserviceparameterType
+  serviceparameters(where: genserviceparameterWhereInput, orderBy: [genserviceparameterOrderByInput], limit: Int, offset: Int): genserviceparameterTypeConnection
+  servicetypeconfig(where: genserviceconfigWhereInput!): genserviceconfigType
+  servicetypeconfigs(where: genserviceconfigWhereInput, orderBy: [genserviceconfigOrderByInput], limit: Int, offset: Int): genserviceconfigTypeConnection
+  serviceconfigprice(where: genserviceconfigpriceWhereInput!): genserviceconfigpriceType
+  serviceconfigprices(where: genserviceconfigpriceWhereInput, orderBy: [genserviceconfigpriceOrderByInput], limit: Int, offset: Int): genserviceconfigpriceTypeConnection
+  datedisable(where: gendatedisableWhereInput!): gendatedisableType
+  datedisables(where: gendatedisableWhereInput, orderBy: [gendatedisableOrderByInput], limit: Int, offset: Int): gendatedisableTypeConnection
+  promotion(where: genpromotionWhereInput!): genpromotionType
+  promotions(where: genpromotionWhereInput, orderBy: [genpromotionOrderByInput], limit: Int, offset: Int): genpromotionTypeConnection
+  servicepromotion(where: genservicepromotionWhereInput!): genservicepromotionType
+  servicepromotions(where: genservicepromotionWhereInput, orderBy: [genservicepromotionOrderByInput], limit: Int, offset: Int): genservicepromotionTypeConnection
+  isnewer: Boolean
+  serviceconfig(where: userserviceconfigWhereInput!): userserviceconfigType
+  serviceconfigs(where: userserviceconfigWhereInput, orderBy: [userserviceconfigOrderByInput], limit: Int, offset: Int): userserviceconfigTypeConnection
+  testimonials: [userserviceType]
+  service(where: userserviceWhereInput!): userserviceType
+  services(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  wallet(where: userwalletWhereInput!): userwalletType
+  wallets(where: userwalletWhereInput, orderBy: [userwalletOrderByInput], limit: Int, offset: Int): userwalletTypeConnection
+  wallettransaction(where: userwallettransactionWhereInput!): userwallettransactionType
+  wallettransactions(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+  address(where: useraddressWhereInput!): useraddressType
+  addresses(where: useraddressWhereInput, orderBy: [useraddressOrderByInput], limit: Int, offset: Int): useraddressTypeConnection
+  myfavoriteaddress: useraddressType
+  myreferred: ReferralsSummaryType
+  me: UserCType
+  managers: [UserType]
+  user(
+    """The ID of the object"""
+    id: ID!
+  ): UserNode
+  users(offset: Int, before: String, after: String, first: Int, last: Int, email: String, username: String, username_Icontains: String, username_Istartswith: String, isActive: Boolean, status_Archived: Boolean, status_Verified: Boolean, status_SecondaryEmail: String, id: ID): UserNodeConnection
+}
+
+type RatingSummaryType {
+  rating1: Int
+  rating2: Int
+  rating3: Int
+  rating4: Int
+  rating5: Int
+}
+
+"""Delete many recurrences"""
+type recurrencesDelete {
+  result: [genrecurrenceType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Delete many referrals bonuses"""
+type referralbonusesDelete {
+  result: [genreferralbonusType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+type ReferralsSummaryType {
+  referrals: [UserCType]
+  bonus: Float
+  bonuswallet: Float
+  totalsignup: Int
+  totalverified: Int
+  totalserviced: Int
+  refinvlink: String
+  refinvmsg: String
+}
+
+"""Same as `grapgql_jwt` implementation, with standard output."""
+type RefreshToken {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  success: Boolean
+  errors: ExpectedErrorType
+  token: String!
+  refreshToken: String!
+}
+
+"""
+Register user with fields defined in the settings.
+
+If the email field of the user model is part of the
+registration fields (default), check if there is
+no user with that email or as a secondary email.
+
+If it exists, it does not register the user,
+even if the email field is not defined as unique
+(default of the default django user model).
+
+When creating the user, it also creates a `UserStatus`
+related to that user, making it possible to track
+if the user is archived, verified and has a secondary
+email.
+
+Send account verification email.
+
+If allowed to not verified users login, return token.
+"""
+type Register {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Sends activation email.
+
+It is called resend because theoretically
+the first activation email was sent when
+the user registered.
+
+If there is no user with the requested email,
+a successful response is returned.
+"""
+type ResendActivationEmail {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Same as `grapgql_jwt` implementation, with standard output."""
+type RevokeToken {
+  revoked: Int!
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Send password reset email.
+
+For non verified users, send an activation
+email instead.
+
+Accepts both primary and secondary email.
+
+If there is no user with the requested email,
+a successful response is returned.
+"""
+type SendPasswordResetEmail {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Send activation to secondary email.
+
+User must be verified and confirm password.
+"""
+type SendSecondaryEmailActivation {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Cancel a user service"""
+type serviceCancel {
+  result: userserviceType
+  ok: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Close a user service"""
+type serviceClose {
+  result: userserviceType
+  ok: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Delete many service config prices"""
+type serviceconfigpricesDelete {
+  result: [genserviceconfigpriceType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Delete many service parameters"""
+type serviceparametersDelete {
+  result: [genserviceparameterType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Pay a user service"""
+type servicePay {
+  result: userserviceType
+  ok: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Delete many service promotions"""
+type servicepromotionsDelete {
+  result: [genservicepromotionType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Delete many service teams"""
+type serviceteamsDelete {
+  result: [genserviceteamType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Delete many service configs"""
+type servicetypeconfigsDelete {
+  result: [genserviceconfigType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Delete many service types"""
+type servicetypesDelete {
+  result: [genservicetypeType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Delete many settings"""
+type settingsDelete {
+  result: [gensettingType]
+  ok: Boolean
+  errors: ErrorType
+}
+
+"""Social Auth Mutation"""
+type SocialAuth {
+  social: SocialType
+}
+
+"""Social Auth for JSON Web Token (JWT)"""
+type SocialAuthJWT {
+  social: SocialType
+  token: String
+}
+
+scalar SocialCamelJSON
+
+type SocialNode implements Node {
+  """The ID of the object"""
+  id: ID!
+  user: UserCType!
+  provider: String!
+  uid: String!
+  extraData: SocialCamelJSON
+  created: DateTime!
+  modified: DateTime!
+}
+
+type SocialNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [SocialNodeEdge]!
+}
+
+"""A Relay edge containing a `SocialNode` and its cursor."""
+type SocialNodeEdge {
+  """The item at the end of the edge"""
+  node: SocialNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type SocialType {
+  id: ID!
+  user: UserCType!
+  provider: String!
+  uid: String!
+  extraData: SocialCamelJSON
+  created: DateTime!
+  modified: DateTime!
+}
+
+input StringFilter {
+  """Exact match."""
+  exact: String
+  in: [String]
+
+  """Is null."""
+  isnull: Boolean
+
+  """Containment test."""
+  contains: String
+
+  """Starts-with."""
+  startswith: String
+
+  """Ends-with."""
+  endswith: String
+
+  """regular expression match."""
+  regex: String
+
+  """Case-insensitive exact match."""
+  iexact: String
+
+  """Case-insensitive containment test."""
+  icontains: String
+
+  """Case-insensitive starts-with."""
+  istartswith: String
+
+  """Case-insensitive ends-with."""
+  iendswith: String
+}
+
+"""
+Swap between primary and secondary emails.
+
+Require password confirmation.
+"""
+type SwapEmails {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Update user model fields, defined on settings.
+
+User must be verified.
+"""
+type UpdateAccount {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Allows update custom roles to  users."""
+type UpdateRoles {
+  user: UserType
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Create scalar that ignores normal serialization/deserialization, since
+that will be handled by the multipart request spec
+"""
+scalar Upload
+
+input useraddressCreateInput {
+  """Address"""
+  address: String!
+
+  """Country"""
+  country: String
+  favorite: Boolean
+
+  """First Name"""
+  firstName: String
+  isActive: Boolean
+
+  """Second Name"""
+  lastName: String
+
+  """Phone"""
+  phone: String
+  userserviceSet: userserviceCreateNestedManyInput
+
+  """ZipCode"""
+  zipcode: String!
+}
+
+input useraddressCreateNestedInput {
+  create: useraddressCreateInput
+  connect: useraddressWhereInput
+}
+
+input useraddressCreateNestedManyInput {
+  create: [useraddressCreateInput]
+  connect: [useraddressWhereInput]
+}
+
+type useraddressCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: useraddressType
+}
+
+type useraddressDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input useraddressOrderByInput {
+  """Address"""
+  address: OrderStringEnum
+
+  """Country"""
+  country: OrderStringEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """Favorite"""
+  favorite: OrderEnum
+
+  """First Name"""
+  firstName: OrderStringEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """Second Name"""
+  lastName: OrderStringEnum
+
+  """Phone"""
+  phone: OrderStringEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """user"""
+  user: UserOrderByInput
+
+  """ZipCode"""
+  zipcode: OrderStringEnum
+}
+
+"""type for useraddress model"""
+type useraddressType {
+  """unique identification field"""
+  id: ID
+
+  """Address"""
+  address: String
+
+  """Country"""
+  country: String
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  favorite: Boolean
+
+  """First Name"""
+  firstName: String
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """Second Name"""
+  lastName: String
+
+  """Phone"""
+  phone: String
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+
+  """user"""
+  user: UserType
+  userserviceSet(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+
+  """ZipCode"""
+  zipcode: String
+}
+
+type useraddressTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [useraddressType]!
+  count: Int
+}
+
+input useraddressUpdateInput {
+  """Address"""
+  address: String
+
+  """Country"""
+  country: String
+  favorite: Boolean
+
+  """First Name"""
+  firstName: String
+  isActive: Boolean
+
+  """Second Name"""
+  lastName: String
+
+  """Phone"""
+  phone: String
+  userserviceSet: userserviceUpdateNestedManyInput
+
+  """ZipCode"""
+  zipcode: String
+}
+
+input useraddressUpdateNestedInput {
+  create: useraddressCreateInput
+  update: useraddressUpdateInput
+  delete: Boolean
+  connect: useraddressWhereInput
+  disconnect: Boolean
+}
+
+input useraddressUpdateNestedManyInput {
+  create: [useraddressCreateInput]
+  update: [useraddressUpdateWithWhereInput]
+  delete: [useraddressWhereInput]
+  connect: [useraddressWhereInput]
+  disconnect: [useraddressWhereInput]
+}
+
+type useraddressUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: useraddressType
+}
+
+input useraddressUpdateWithWhereInput {
+  where: useraddressWhereInput
+  input: useraddressUpdateInput
+}
+
+input useraddressWhereInput {
+  id: IDFilter
+  OR: [useraddressWhereInput]
+  AND: [useraddressWhereInput]
+  NOT: useraddressWhereInput
+
+  """Address"""
+  address: StringFilter
+
+  """Country"""
+  country: StringFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """Favorite"""
+  favorite: BooleanFilter
+
+  """First Name"""
+  firstName: StringFilter
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """Second Name"""
+  lastName: StringFilter
+
+  """Phone"""
+  phone: StringFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+
+  """user"""
+  user: UserWhereInput
+  userservice: userserviceWhereInput
+
+  """ZipCode"""
+  zipcode: StringFilter
+}
+
+input UserCreateInput {
+  """code"""
+  code: UUID
+
+  """Country"""
+  country: String
+
+  """date joined"""
+  dateJoined: DateTime
+
+  """email address"""
+  email: String!
+
+  """first name"""
+  firstName: String
+  gendatedisableCreatedBy: gendatedisableCreateNestedManyInput
+  gendatedisableDeletedBy: gendatedisableCreateNestedManyInput
+  gendatedisableUpdatedBy: gendatedisableCreateNestedManyInput
+  genpromotionCreatedBy: genpromotionCreateNestedManyInput
+  genpromotionDeletedBy: genpromotionCreateNestedManyInput
+  genpromotionUpdatedBy: genpromotionCreateNestedManyInput
+  genrecurrenceCreatedBy: genrecurrenceCreateNestedManyInput
+  genrecurrenceDeletedBy: genrecurrenceCreateNestedManyInput
+  genrecurrenceUpdatedBy: genrecurrenceCreateNestedManyInput
+  genreferralbonusCreatedBy: genreferralbonusCreateNestedManyInput
+  genreferralbonusDeletedBy: genreferralbonusCreateNestedManyInput
+  genreferralbonusUpdatedBy: genreferralbonusCreateNestedManyInput
+  genserviceconfigCreatedBy: genserviceconfigCreateNestedManyInput
+  genserviceconfigDeletedBy: genserviceconfigCreateNestedManyInput
+  genserviceconfigUpdatedBy: genserviceconfigCreateNestedManyInput
+  genserviceconfigpriceCreatedBy: genserviceconfigpriceCreateNestedManyInput
+  genserviceconfigpriceDeletedBy: genserviceconfigpriceCreateNestedManyInput
+  genserviceconfigpriceUpdatedBy: genserviceconfigpriceCreateNestedManyInput
+  genserviceparameterCreatedBy: genserviceparameterCreateNestedManyInput
+  genserviceparameterDeletedBy: genserviceparameterCreateNestedManyInput
+  genserviceparameterUpdatedBy: genserviceparameterCreateNestedManyInput
+  genservicepromotionCreatedBy: genservicepromotionCreateNestedManyInput
+  genservicepromotionDeletedBy: genservicepromotionCreateNestedManyInput
+  genservicepromotionUpdatedBy: genservicepromotionCreateNestedManyInput
+  genserviceteamCreatedBy: genserviceteamCreateNestedManyInput
+  genserviceteamDeletedBy: genserviceteamCreateNestedManyInput
+  genserviceteamUpdatedBy: genserviceteamCreateNestedManyInput
+  genservicetypeCreatedBy: genservicetypeCreateNestedManyInput
+  genservicetypeDeletedBy: genservicetypeCreateNestedManyInput
+  genservicetypeSet: genservicetypeCreateNestedManyInput
+  genservicetypeUpdatedBy: genservicetypeCreateNestedManyInput
+  gensettingCreatedBy: gensettingCreateNestedManyInput
+  gensettingDeletedBy: gensettingCreateNestedManyInput
+  gensettingUpdatedBy: gensettingCreateNestedManyInput
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: Boolean
+
+  """User is Admin"""
+  isAdmin: Boolean
+
+  """User is Manager"""
+  isManager: Boolean
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: Boolean
+
+  """
+  Designates that this user has all permissions without explicitly assigning them.
+  """
+  isSuperuser: Boolean
+
+  """last login"""
+  lastLogin: DateTime
+
+  """last name"""
+  lastName: String
+
+  """level"""
+  level: Int
+  managers: genserviceteamCreateNestedManyInput
+
+  """password"""
+  password: String!
+
+  """Phone"""
+  phone: String
+
+  """refby"""
+  refby: UserCreateNestedInput
+  referrals: UserCreateNestedManyInput
+  useraddressCreatedBy: useraddressCreateNestedManyInput
+  useraddressDeletedBy: useraddressCreateNestedManyInput
+  useraddressSet: useraddressCreateNestedManyInput
+  useraddressUpdatedBy: useraddressCreateNestedManyInput
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String!
+  userserviceCreatedBy: userserviceCreateNestedManyInput
+  userserviceDeletedBy: userserviceCreateNestedManyInput
+  userserviceSet: userserviceCreateNestedManyInput
+  userserviceUpdatedBy: userserviceCreateNestedManyInput
+  userserviceconfigCreatedBy: userserviceconfigCreateNestedManyInput
+  userserviceconfigDeletedBy: userserviceconfigCreateNestedManyInput
+  userserviceconfigUpdatedBy: userserviceconfigCreateNestedManyInput
+  userwalletCreatedBy: userwalletCreateNestedManyInput
+  userwalletDeletedBy: userwalletCreateNestedManyInput
+  userwalletSet: userwalletCreateNestedManyInput
+  userwalletUpdatedBy: userwalletCreateNestedManyInput
+  userwallettransactionCreatedBy: userwallettransactionCreateNestedManyInput
+  userwallettransactionDeletedBy: userwallettransactionCreateNestedManyInput
+  userwallettransactionSet: userwallettransactionCreateNestedManyInput
+  userwallettransactionUpdatedBy: userwallettransactionCreateNestedManyInput
+}
+
+input UserCreateNestedInput {
+  create: UserCreateInput
+  connect: UserWhereInput
+}
+
+input UserCreateNestedManyInput {
+  create: [UserCreateInput]
+  connect: [UserWhereInput]
+}
+
+type UserCType implements Node {
+  """The ID of the object"""
+  id: ID!
+  lastLogin: DateTime
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String!
+  firstName: String!
+  lastName: String!
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: Boolean!
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: Boolean!
+  dateJoined: DateTime!
+
+  """User is Admin"""
+  isAdmin: Boolean!
+
+  """User is Manager"""
+  isManager: Boolean!
+  email: String!
+  phone: String
+  country: String
+  code: UUID!
+  refby: UserCType
+  level: Int!
+  roles: [String!]
+  referrals(offset: Int, before: String, after: String, first: Int, last: Int): UserCTypeConnection!
+  socialAuth(offset: Int, before: String, after: String, first: Int, last: Int, uid: String, uid_In: [String], provider: String, provider_In: [String]): SocialNodeConnection!
+  password: String!
+
+  """
+  Designates that this user has all permissions without explicitly assigning them.
+  """
+  isSuperuser: Boolean!
+  bonus: Float
+  bonusw: Float
+  verified: Boolean
+  serviced: Boolean
+}
+
+type UserCTypeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [UserCTypeEdge]!
+}
+
+"""A Relay edge containing a `UserCType` and its cursor."""
+type UserCTypeEdge {
+  """The item at the end of the edge"""
+  node: UserCType
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type UserNode implements Node {
+  """The ID of the object"""
+  id: ID!
+  lastLogin: DateTime
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String!
+  firstName: String!
+  lastName: String!
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: Boolean!
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: Boolean!
+  dateJoined: DateTime!
+
+  """User is Admin"""
+  isAdmin: Boolean!
+
+  """User is Manager"""
+  isManager: Boolean!
+  email: String!
+  phone: String
+  country: String
+  code: UUID!
+  refby: UserCType
+  level: Int!
+  roles: [String!]
+  referrals(offset: Int, before: String, after: String, first: Int, last: Int): UserCTypeConnection!
+  socialAuth(offset: Int, before: String, after: String, first: Int, last: Int, uid: String, uid_In: [String], provider: String, provider_In: [String]): SocialNodeConnection!
+  pk: Int
+  archived: Boolean
+  verified: Boolean
+  secondaryEmail: String
+}
+
+type UserNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [UserNodeEdge]!
+}
+
+"""A Relay edge containing a `UserNode` and its cursor."""
+type UserNodeEdge {
+  """The item at the end of the edge"""
+  node: UserNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+input UserOrderByInput {
+  """code"""
+  code: OrderEnum
+
+  """Country"""
+  country: OrderStringEnum
+
+  """date joined"""
+  dateJoined: OrderEnum
+
+  """email address"""
+  email: OrderStringEnum
+
+  """first name"""
+  firstName: OrderStringEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: OrderEnum
+
+  """User is Admin"""
+  isAdmin: OrderEnum
+
+  """User is Manager"""
+  isManager: OrderEnum
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: OrderEnum
+
+  """
+  Designates that this user has all permissions without explicitly assigning them.
+  """
+  isSuperuser: OrderEnum
+
+  """last login"""
+  lastLogin: OrderEnum
+
+  """last name"""
+  lastName: OrderStringEnum
+
+  """level"""
+  level: OrderEnum
+
+  """password"""
+  password: OrderStringEnum
+
+  """Phone"""
+  phone: OrderStringEnum
+
+  """refby"""
+  refby: UserOrderByInput
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: OrderStringEnum
+}
+
+input userserviceconfigCreateInput {
+  """extraprice"""
+  extraprice: Float
+  isActive: Boolean
+
+  """parameter"""
+  parameter: genserviceparameterCreateNestedInput
+
+  """quantity"""
+  quantity: Int
+
+  """service"""
+  service: userserviceCreateNestedInput
+
+  """total"""
+  total: Float
+}
+
+input userserviceconfigCreateNestedManyInput {
+  create: [userserviceconfigCreateInput]
+  connect: [userserviceconfigWhereInput]
+}
+
+type userserviceconfigCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: userserviceconfigType
+}
+
+type userserviceconfigDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input userserviceconfigOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """extraprice"""
+  extraprice: OrderEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """parameter"""
+  parameter: genserviceparameterOrderByInput
+
+  """quantity"""
+  quantity: OrderEnum
+
+  """service"""
+  service: userserviceOrderByInput
+
+  """total"""
+  total: OrderEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+}
+
+"""type for userserviceconfig model"""
+type userserviceconfigType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+
+  """extraprice"""
+  extraprice: Float
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """parameter"""
+  parameter: genserviceparameterType
+
+  """quantity"""
+  quantity: Int
+
+  """service"""
+  service: userserviceType
+
+  """total"""
+  total: Float
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+}
+
+type userserviceconfigTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [userserviceconfigType]!
+  count: Int
+}
+
+input userserviceconfigUpdateInput {
+  """extraprice"""
+  extraprice: Float
+  isActive: Boolean
+
+  """parameter"""
+  parameter: genserviceparameterUpdateNestedInput
+
+  """quantity"""
+  quantity: Int
+
+  """service"""
+  service: userserviceUpdateNestedInput
+
+  """total"""
+  total: Float
+}
+
+input userserviceconfigUpdateNestedManyInput {
+  create: [userserviceconfigCreateInput]
+  update: [userserviceconfigUpdateWithWhereInput]
+  delete: [userserviceconfigWhereInput]
+  connect: [userserviceconfigWhereInput]
+  disconnect: [userserviceconfigWhereInput]
+}
+
+type userserviceconfigUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: userserviceconfigType
+}
+
+input userserviceconfigUpdateWithWhereInput {
+  where: userserviceconfigWhereInput
+  input: userserviceconfigUpdateInput
+}
+
+input userserviceconfigWhereInput {
+  id: IDFilter
+  OR: [userserviceconfigWhereInput]
+  AND: [userserviceconfigWhereInput]
+  NOT: userserviceconfigWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """extraprice"""
+  extraprice: FloatFilter
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """parameter"""
+  parameter: genserviceparameterWhereInput
+
+  """quantity"""
+  quantity: IntFilter
+
+  """service"""
+  service: userserviceWhereInput
+
+  """total"""
+  total: FloatFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+}
+
+input userserviceCreateInput {
+  """additional"""
+  additional: String
+
+  """address"""
+  address: useraddressCreateNestedInput
+
+  """bonus newer"""
+  bonusNewer: Float
+
+  """bonus promotions"""
+  bonusPromotions: Float
+
+  """bonus recurrence"""
+  bonusRecurrence: Float
+
+  """bonus wallet"""
+  bonusWallet: Float
+
+  """comments"""
+  comments: String
+
+  """date"""
+  date: DateTime!
+
+  """duration"""
+  duration: Int
+
+  """extraprice"""
+  extraprice: Float
+  isActive: Boolean
+  parameters: genserviceparameterCreateNestedManyInput
+
+  """price"""
+  price: Float
+
+  """rating"""
+  rating: Int
+
+  """recorigin"""
+  recorigin: Int
+
+  """recquantity"""
+  recquantity: Int
+
+  """recurrence"""
+  recurrence: genrecurrenceCreateNestedInput
+
+  """serviceteam"""
+  serviceteam: genserviceteamCreateNestedInput
+
+  """servicetype"""
+  servicetype: genservicetypeCreateNestedInput
+
+  """status"""
+  status: Int
+
+  """user"""
+  user: UserCreateNestedInput
+  userserviceconfigSet: userserviceconfigCreateNestedManyInput
+  userwallettransactionSet: userwallettransactionCreateNestedManyInput
+}
+
+input userserviceCreateNestedInput {
+  create: userserviceCreateInput
+  connect: userserviceWhereInput
+}
+
+input userserviceCreateNestedManyInput {
+  create: [userserviceCreateInput]
+  connect: [userserviceWhereInput]
+}
+
+type userserviceCreatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: userserviceType
+}
+
+type userserviceDeletePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+}
+
+input userserviceOrderByInput {
+  """additional"""
+  additional: OrderStringEnum
+
+  """address"""
+  address: useraddressOrderByInput
+
+  """bonus newer"""
+  bonusNewer: OrderEnum
+
+  """bonus promotions"""
+  bonusPromotions: OrderEnum
+
+  """bonus recurrence"""
+  bonusRecurrence: OrderEnum
+
+  """bonus wallet"""
+  bonusWallet: OrderEnum
+
+  """comments"""
+  comments: OrderStringEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """date"""
+  date: OrderEnum
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """duration"""
+  duration: OrderEnum
+
+  """extraprice"""
+  extraprice: OrderEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """price"""
+  price: OrderEnum
+
+  """rating"""
+  rating: OrderEnum
+
+  """recorigin"""
+  recorigin: OrderEnum
+
+  """recquantity"""
+  recquantity: OrderEnum
+
+  """recurrence"""
+  recurrence: genrecurrenceOrderByInput
+
+  """serviceteam"""
+  serviceteam: genserviceteamOrderByInput
+
+  """servicetype"""
+  servicetype: genservicetypeOrderByInput
+
+  """status"""
+  status: OrderEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """user"""
+  user: UserOrderByInput
+}
+
+"""type for userservice model"""
+type userserviceType {
+  """unique identification field"""
+  id: ID
+
+  """additional"""
+  additional: String
+
+  """address"""
+  address: useraddressType
+
+  """bonus newer"""
+  bonusNewer: Float
+
+  """bonus promotions"""
+  bonusPromotions: Float
+
+  """bonus recurrence"""
+  bonusRecurrence: Float
+
+  """bonus wallet"""
+  bonusWallet: Float
+
+  """comments"""
+  comments: String
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """date"""
+  date: DateTime
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+
+  """duration"""
+  duration: Int
+
+  """extraprice"""
+  extraprice: Float
+  isActive: Boolean
+  isDeleted: Boolean
+  parameters(where: genserviceparameterWhereInput, orderBy: [genserviceparameterOrderByInput], limit: Int, offset: Int): genserviceparameterTypeConnection
+
+  """price"""
+  price: Float
+
+  """rating"""
+  rating: Int
+
+  """recorigin"""
+  recorigin: Int
+
+  """recquantity"""
+  recquantity: Int
+
+  """recurrence"""
+  recurrence: genrecurrenceType
+
+  """serviceteam"""
+  serviceteam: genserviceteamType
+
+  """servicetype"""
+  servicetype: genservicetypeType
+
+  """status"""
+  status: Int
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+
+  """user"""
+  user: UserType
+  userserviceconfigSet(where: userserviceconfigWhereInput, orderBy: [userserviceconfigOrderByInput], limit: Int, offset: Int): userserviceconfigTypeConnection
+  userwallettransactionSet(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+  totalprice: Float
+}
+
+type userserviceTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [userserviceType]!
+  count: Int
+}
+
+input userserviceUpdateInput {
+  """additional"""
+  additional: String
+
+  """address"""
+  address: useraddressUpdateNestedInput
+
+  """bonus newer"""
+  bonusNewer: Float
+
+  """bonus promotions"""
+  bonusPromotions: Float
+
+  """bonus recurrence"""
+  bonusRecurrence: Float
+
+  """bonus wallet"""
+  bonusWallet: Float
+
+  """comments"""
+  comments: String
+
+  """date"""
+  date: DateTime
+
+  """duration"""
+  duration: Int
+
+  """extraprice"""
+  extraprice: Float
+  isActive: Boolean
+  parameters: genserviceparameterUpdateNestedManyInput
+
+  """price"""
+  price: Float
+
+  """rating"""
+  rating: Int
+
+  """recorigin"""
+  recorigin: Int
+
+  """recquantity"""
+  recquantity: Int
+
+  """recurrence"""
+  recurrence: genrecurrenceUpdateNestedInput
+
+  """serviceteam"""
+  serviceteam: genserviceteamUpdateNestedInput
+
+  """servicetype"""
+  servicetype: genservicetypeUpdateNestedInput
+
+  """status"""
+  status: Int
+
+  """user"""
+  user: UserUpdateNestedInput
+  userserviceconfigSet: userserviceconfigUpdateNestedManyInput
+  userwallettransactionSet: userwallettransactionUpdateNestedManyInput
+}
+
+input userserviceUpdateNestedInput {
+  create: userserviceCreateInput
+  update: userserviceUpdateInput
+  delete: Boolean
+  connect: userserviceWhereInput
+  disconnect: Boolean
+}
+
+input userserviceUpdateNestedManyInput {
+  create: [userserviceCreateInput]
+  update: [userserviceUpdateWithWhereInput]
+  delete: [userserviceWhereInput]
+  connect: [userserviceWhereInput]
+  disconnect: [userserviceWhereInput]
+}
+
+type userserviceUpdatePayload {
+  """Boolean field that return the success state of request."""
+  ok: Boolean
+
+  """Errors list for the field"""
+  errors: [ErrorType]
+  result: userserviceType
+}
+
+input userserviceUpdateWithWhereInput {
+  where: userserviceWhereInput
+  input: userserviceUpdateInput
+}
+
+input userserviceWhereInput {
+  id: IDFilter
+  OR: [userserviceWhereInput]
+  AND: [userserviceWhereInput]
+  NOT: userserviceWhereInput
+
+  """additional"""
+  additional: StringFilter
+
+  """address"""
+  address: useraddressWhereInput
+
+  """bonus newer"""
+  bonusNewer: FloatFilter
+
+  """bonus promotions"""
+  bonusPromotions: FloatFilter
+
+  """bonus recurrence"""
+  bonusRecurrence: FloatFilter
+
+  """bonus wallet"""
+  bonusWallet: FloatFilter
+
+  """comments"""
+  comments: StringFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """date"""
+  date: DatetimeFilter
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """duration"""
+  duration: IntFilter
+
+  """extraprice"""
+  extraprice: FloatFilter
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+  parameters: genserviceparameterWhereInput
+
+  """price"""
+  price: FloatFilter
+
+  """rating"""
+  rating: IntFilter
+
+  """recorigin"""
+  recorigin: IntFilter
+
+  """recquantity"""
+  recquantity: IntFilter
+
+  """recurrence"""
+  recurrence: genrecurrenceWhereInput
+
+  """serviceteam"""
+  serviceteam: genserviceteamWhereInput
+
+  """servicetype"""
+  servicetype: genservicetypeWhereInput
+
+  """status"""
+  status: IntFilter
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+
+  """user"""
+  user: UserWhereInput
+  userserviceconfig: userserviceconfigWhereInput
+  userwallettransaction: userwallettransactionWhereInput
+}
+
+"""type for User model"""
+type UserType {
+  """unique identification field"""
+  id: ID
+
+  """code"""
+  code: UUID
+
+  """Country"""
+  country: String
+
+  """date joined"""
+  dateJoined: DateTime
+
+  """email address"""
+  email: String
+
+  """first name"""
+  firstName: String
+  gendatedisableCreatedBy(where: gendatedisableWhereInput, orderBy: [gendatedisableOrderByInput], limit: Int, offset: Int): gendatedisableTypeConnection
+  gendatedisableDeletedBy(where: gendatedisableWhereInput, orderBy: [gendatedisableOrderByInput], limit: Int, offset: Int): gendatedisableTypeConnection
+  gendatedisableUpdatedBy(where: gendatedisableWhereInput, orderBy: [gendatedisableOrderByInput], limit: Int, offset: Int): gendatedisableTypeConnection
+  genpromotionCreatedBy(where: genpromotionWhereInput, orderBy: [genpromotionOrderByInput], limit: Int, offset: Int): genpromotionTypeConnection
+  genpromotionDeletedBy(where: genpromotionWhereInput, orderBy: [genpromotionOrderByInput], limit: Int, offset: Int): genpromotionTypeConnection
+  genpromotionUpdatedBy(where: genpromotionWhereInput, orderBy: [genpromotionOrderByInput], limit: Int, offset: Int): genpromotionTypeConnection
+  genrecurrenceCreatedBy(where: genrecurrenceWhereInput, orderBy: [genrecurrenceOrderByInput], limit: Int, offset: Int): genrecurrenceTypeConnection
+  genrecurrenceDeletedBy(where: genrecurrenceWhereInput, orderBy: [genrecurrenceOrderByInput], limit: Int, offset: Int): genrecurrenceTypeConnection
+  genrecurrenceUpdatedBy(where: genrecurrenceWhereInput, orderBy: [genrecurrenceOrderByInput], limit: Int, offset: Int): genrecurrenceTypeConnection
+  genreferralbonusCreatedBy(where: genreferralbonusWhereInput, orderBy: [genreferralbonusOrderByInput], limit: Int, offset: Int): genreferralbonusTypeConnection
+  genreferralbonusDeletedBy(where: genreferralbonusWhereInput, orderBy: [genreferralbonusOrderByInput], limit: Int, offset: Int): genreferralbonusTypeConnection
+  genreferralbonusUpdatedBy(where: genreferralbonusWhereInput, orderBy: [genreferralbonusOrderByInput], limit: Int, offset: Int): genreferralbonusTypeConnection
+  genserviceconfigCreatedBy(where: genserviceconfigWhereInput, orderBy: [genserviceconfigOrderByInput], limit: Int, offset: Int): genserviceconfigTypeConnection
+  genserviceconfigDeletedBy(where: genserviceconfigWhereInput, orderBy: [genserviceconfigOrderByInput], limit: Int, offset: Int): genserviceconfigTypeConnection
+  genserviceconfigUpdatedBy(where: genserviceconfigWhereInput, orderBy: [genserviceconfigOrderByInput], limit: Int, offset: Int): genserviceconfigTypeConnection
+  genserviceconfigpriceCreatedBy(where: genserviceconfigpriceWhereInput, orderBy: [genserviceconfigpriceOrderByInput], limit: Int, offset: Int): genserviceconfigpriceTypeConnection
+  genserviceconfigpriceDeletedBy(where: genserviceconfigpriceWhereInput, orderBy: [genserviceconfigpriceOrderByInput], limit: Int, offset: Int): genserviceconfigpriceTypeConnection
+  genserviceconfigpriceUpdatedBy(where: genserviceconfigpriceWhereInput, orderBy: [genserviceconfigpriceOrderByInput], limit: Int, offset: Int): genserviceconfigpriceTypeConnection
+  genserviceparameterCreatedBy(where: genserviceparameterWhereInput, orderBy: [genserviceparameterOrderByInput], limit: Int, offset: Int): genserviceparameterTypeConnection
+  genserviceparameterDeletedBy(where: genserviceparameterWhereInput, orderBy: [genserviceparameterOrderByInput], limit: Int, offset: Int): genserviceparameterTypeConnection
+  genserviceparameterUpdatedBy(where: genserviceparameterWhereInput, orderBy: [genserviceparameterOrderByInput], limit: Int, offset: Int): genserviceparameterTypeConnection
+  genservicepromotionCreatedBy(where: genservicepromotionWhereInput, orderBy: [genservicepromotionOrderByInput], limit: Int, offset: Int): genservicepromotionTypeConnection
+  genservicepromotionDeletedBy(where: genservicepromotionWhereInput, orderBy: [genservicepromotionOrderByInput], limit: Int, offset: Int): genservicepromotionTypeConnection
+  genservicepromotionUpdatedBy(where: genservicepromotionWhereInput, orderBy: [genservicepromotionOrderByInput], limit: Int, offset: Int): genservicepromotionTypeConnection
+  genserviceteamCreatedBy(where: genserviceteamWhereInput, orderBy: [genserviceteamOrderByInput], limit: Int, offset: Int): genserviceteamTypeConnection
+  genserviceteamDeletedBy(where: genserviceteamWhereInput, orderBy: [genserviceteamOrderByInput], limit: Int, offset: Int): genserviceteamTypeConnection
+  genserviceteamUpdatedBy(where: genserviceteamWhereInput, orderBy: [genserviceteamOrderByInput], limit: Int, offset: Int): genserviceteamTypeConnection
+  genservicetypeCreatedBy(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+  genservicetypeDeletedBy(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+  genservicetypeSet(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+  genservicetypeUpdatedBy(where: genservicetypeWhereInput, orderBy: [genservicetypeOrderByInput], limit: Int, offset: Int): genservicetypeTypeConnection
+  gensettingCreatedBy(where: gensettingWhereInput, orderBy: [gensettingOrderByInput], limit: Int, offset: Int): gensettingTypeConnection
+  gensettingDeletedBy(where: gensettingWhereInput, orderBy: [gensettingOrderByInput], limit: Int, offset: Int): gensettingTypeConnection
+  gensettingUpdatedBy(where: gensettingWhereInput, orderBy: [gensettingOrderByInput], limit: Int, offset: Int): gensettingTypeConnection
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: Boolean
+
+  """User is Admin"""
+  isAdmin: Boolean
+
+  """User is Manager"""
+  isManager: Boolean
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: Boolean
+
+  """
+  Designates that this user has all permissions without explicitly assigning them.
+  """
+  isSuperuser: Boolean
+
+  """last login"""
+  lastLogin: DateTime
+
+  """last name"""
+  lastName: String
+
+  """level"""
+  level: Int
+  managers(where: genserviceteamWhereInput, orderBy: [genserviceteamOrderByInput], limit: Int, offset: Int): genserviceteamTypeConnection
+
+  """password"""
+  password: String
+
+  """Phone"""
+  phone: String
+
+  """refby"""
+  refby: UserType
+  referrals(where: UserWhereInput, orderBy: [UserOrderByInput], limit: Int, offset: Int): UserTypeConnection
+  useraddressCreatedBy(where: useraddressWhereInput, orderBy: [useraddressOrderByInput], limit: Int, offset: Int): useraddressTypeConnection
+  useraddressDeletedBy(where: useraddressWhereInput, orderBy: [useraddressOrderByInput], limit: Int, offset: Int): useraddressTypeConnection
+  useraddressSet(where: useraddressWhereInput, orderBy: [useraddressOrderByInput], limit: Int, offset: Int): useraddressTypeConnection
+  useraddressUpdatedBy(where: useraddressWhereInput, orderBy: [useraddressOrderByInput], limit: Int, offset: Int): useraddressTypeConnection
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String
+  userserviceCreatedBy(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  userserviceDeletedBy(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  userserviceSet(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  userserviceUpdatedBy(where: userserviceWhereInput, orderBy: [userserviceOrderByInput], limit: Int, offset: Int): userserviceTypeConnection
+  userserviceconfigCreatedBy(where: userserviceconfigWhereInput, orderBy: [userserviceconfigOrderByInput], limit: Int, offset: Int): userserviceconfigTypeConnection
+  userserviceconfigDeletedBy(where: userserviceconfigWhereInput, orderBy: [userserviceconfigOrderByInput], limit: Int, offset: Int): userserviceconfigTypeConnection
+  userserviceconfigUpdatedBy(where: userserviceconfigWhereInput, orderBy: [userserviceconfigOrderByInput], limit: Int, offset: Int): userserviceconfigTypeConnection
+  userwalletCreatedBy(where: userwalletWhereInput, orderBy: [userwalletOrderByInput], limit: Int, offset: Int): userwalletTypeConnection
+  userwalletDeletedBy(where: userwalletWhereInput, orderBy: [userwalletOrderByInput], limit: Int, offset: Int): userwalletTypeConnection
+  userwalletSet(where: userwalletWhereInput, orderBy: [userwalletOrderByInput], limit: Int, offset: Int): userwalletTypeConnection
+  userwalletUpdatedBy(where: userwalletWhereInput, orderBy: [userwalletOrderByInput], limit: Int, offset: Int): userwalletTypeConnection
+  userwallettransactionCreatedBy(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+  userwallettransactionDeletedBy(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+  userwallettransactionSet(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+  userwallettransactionUpdatedBy(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+}
+
+type UserTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [UserType]!
+  count: Int
+}
+
+input UserUpdateInput {
+  """code"""
+  code: UUID
+
+  """Country"""
+  country: String
+
+  """date joined"""
+  dateJoined: DateTime
+
+  """email address"""
+  email: String
+
+  """first name"""
+  firstName: String
+  gendatedisableCreatedBy: gendatedisableUpdateNestedManyInput
+  gendatedisableDeletedBy: gendatedisableUpdateNestedManyInput
+  gendatedisableUpdatedBy: gendatedisableUpdateNestedManyInput
+  genpromotionCreatedBy: genpromotionUpdateNestedManyInput
+  genpromotionDeletedBy: genpromotionUpdateNestedManyInput
+  genpromotionUpdatedBy: genpromotionUpdateNestedManyInput
+  genrecurrenceCreatedBy: genrecurrenceUpdateNestedManyInput
+  genrecurrenceDeletedBy: genrecurrenceUpdateNestedManyInput
+  genrecurrenceUpdatedBy: genrecurrenceUpdateNestedManyInput
+  genreferralbonusCreatedBy: genreferralbonusUpdateNestedManyInput
+  genreferralbonusDeletedBy: genreferralbonusUpdateNestedManyInput
+  genreferralbonusUpdatedBy: genreferralbonusUpdateNestedManyInput
+  genserviceconfigCreatedBy: genserviceconfigUpdateNestedManyInput
+  genserviceconfigDeletedBy: genserviceconfigUpdateNestedManyInput
+  genserviceconfigUpdatedBy: genserviceconfigUpdateNestedManyInput
+  genserviceconfigpriceCreatedBy: genserviceconfigpriceUpdateNestedManyInput
+  genserviceconfigpriceDeletedBy: genserviceconfigpriceUpdateNestedManyInput
+  genserviceconfigpriceUpdatedBy: genserviceconfigpriceUpdateNestedManyInput
+  genserviceparameterCreatedBy: genserviceparameterUpdateNestedManyInput
+  genserviceparameterDeletedBy: genserviceparameterUpdateNestedManyInput
+  genserviceparameterUpdatedBy: genserviceparameterUpdateNestedManyInput
+  genservicepromotionCreatedBy: genservicepromotionUpdateNestedManyInput
+  genservicepromotionDeletedBy: genservicepromotionUpdateNestedManyInput
+  genservicepromotionUpdatedBy: genservicepromotionUpdateNestedManyInput
+  genserviceteamCreatedBy: genserviceteamUpdateNestedManyInput
+  genserviceteamDeletedBy: genserviceteamUpdateNestedManyInput
+  genserviceteamUpdatedBy: genserviceteamUpdateNestedManyInput
+  genservicetypeCreatedBy: genservicetypeUpdateNestedManyInput
+  genservicetypeDeletedBy: genservicetypeUpdateNestedManyInput
+  genservicetypeSet: genservicetypeUpdateNestedManyInput
+  genservicetypeUpdatedBy: genservicetypeUpdateNestedManyInput
+  gensettingCreatedBy: gensettingUpdateNestedManyInput
+  gensettingDeletedBy: gensettingUpdateNestedManyInput
+  gensettingUpdatedBy: gensettingUpdateNestedManyInput
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: Boolean
+
+  """User is Admin"""
+  isAdmin: Boolean
+
+  """User is Manager"""
+  isManager: Boolean
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: Boolean
+
+  """
+  Designates that this user has all permissions without explicitly assigning them.
+  """
+  isSuperuser: Boolean
+
+  """last login"""
+  lastLogin: DateTime
+
+  """last name"""
+  lastName: String
+
+  """level"""
+  level: Int
+  managers: genserviceteamUpdateNestedManyInput
+
+  """password"""
+  password: String
+
+  """Phone"""
+  phone: String
+
+  """refby"""
+  refby: UserUpdateNestedInput
+  referrals: UserUpdateNestedManyInput
+  useraddressCreatedBy: useraddressUpdateNestedManyInput
+  useraddressDeletedBy: useraddressUpdateNestedManyInput
+  useraddressSet: useraddressUpdateNestedManyInput
+  useraddressUpdatedBy: useraddressUpdateNestedManyInput
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String
+  userserviceCreatedBy: userserviceUpdateNestedManyInput
+  userserviceDeletedBy: userserviceUpdateNestedManyInput
+  userserviceSet: userserviceUpdateNestedManyInput
+  userserviceUpdatedBy: userserviceUpdateNestedManyInput
+  userserviceconfigCreatedBy: userserviceconfigUpdateNestedManyInput
+  userserviceconfigDeletedBy: userserviceconfigUpdateNestedManyInput
+  userserviceconfigUpdatedBy: userserviceconfigUpdateNestedManyInput
+  userwalletCreatedBy: userwalletUpdateNestedManyInput
+  userwalletDeletedBy: userwalletUpdateNestedManyInput
+  userwalletSet: userwalletUpdateNestedManyInput
+  userwalletUpdatedBy: userwalletUpdateNestedManyInput
+  userwallettransactionCreatedBy: userwallettransactionUpdateNestedManyInput
+  userwallettransactionDeletedBy: userwallettransactionUpdateNestedManyInput
+  userwallettransactionSet: userwallettransactionUpdateNestedManyInput
+  userwallettransactionUpdatedBy: userwallettransactionUpdateNestedManyInput
+}
+
+input UserUpdateNestedInput {
+  create: UserCreateInput
+  update: UserUpdateInput
+  delete: Boolean
+  connect: UserWhereInput
+  disconnect: Boolean
+}
+
+input UserUpdateNestedManyInput {
+  create: [UserCreateInput]
+  update: [UserUpdateWithWhereInput]
+  delete: [UserWhereInput]
+  connect: [UserWhereInput]
+  disconnect: [UserWhereInput]
+}
+
+input UserUpdateWithWhereInput {
+  where: UserWhereInput
+  input: UserUpdateInput
+}
+
+input userwalletCreateInput {
+  """balance"""
+  balance: Float
+  isActive: Boolean
+  transaction: userwallettransactionCreateNestedManyInput
+
+  """user"""
+  user: UserCreateNestedInput
+}
+
+input userwalletCreateNestedInput {
+  create: userwalletCreateInput
+  connect: userwalletWhereInput
+}
+
+input userwalletCreateNestedManyInput {
+  create: [userwalletCreateInput]
+  connect: [userwalletWhereInput]
+}
+
+input userwalletOrderByInput {
+  """balance"""
+  balance: OrderEnum
+
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """user"""
+  user: UserOrderByInput
+}
+
+input userwallettransactionCreateInput {
+  """Description"""
+  description: String!
+  isActive: Boolean
+
+  """service"""
+  service: userserviceCreateNestedInput
+
+  """source"""
+  source: UserCreateNestedInput
+
+  """value"""
+  value: Float
+
+  """wallet"""
+  wallet: userwalletCreateNestedInput
+}
+
+input userwallettransactionCreateNestedManyInput {
+  create: [userwallettransactionCreateInput]
+  connect: [userwallettransactionWhereInput]
+}
+
+input userwallettransactionOrderByInput {
+  """created at"""
+  createdAt: OrderEnum
+
+  """created by"""
+  createdBy: UserOrderByInput
+
+  """deleted at"""
+  deletedAt: OrderEnum
+
+  """deleted by"""
+  deletedBy: UserOrderByInput
+
+  """Description"""
+  description: OrderStringEnum
+
+  """ID"""
+  id: OrderEnum
+
+  """is active"""
+  isActive: OrderEnum
+
+  """is deleted"""
+  isDeleted: OrderEnum
+
+  """service"""
+  service: userserviceOrderByInput
+
+  """source"""
+  source: UserOrderByInput
+
+  """updated at"""
+  updatedAt: OrderEnum
+
+  """updated by"""
+  updatedBy: UserOrderByInput
+
+  """value"""
+  value: OrderEnum
+
+  """wallet"""
+  wallet: userwalletOrderByInput
+}
+
+"""type for userwallettransaction model"""
+type userwallettransactionType {
+  """unique identification field"""
+  id: ID
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+
+  """Description"""
+  description: String
+  isActive: Boolean
+  isDeleted: Boolean
+
+  """service"""
+  service: userserviceType
+
+  """source"""
+  source: UserType
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+
+  """value"""
+  value: Float
+
+  """wallet"""
+  wallet: userwalletType
+}
+
+type userwallettransactionTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [userwallettransactionType]!
+  count: Int
+}
+
+input userwallettransactionUpdateInput {
+  """Description"""
+  description: String
+  isActive: Boolean
+
+  """service"""
+  service: userserviceUpdateNestedInput
+
+  """source"""
+  source: UserUpdateNestedInput
+
+  """value"""
+  value: Float
+
+  """wallet"""
+  wallet: userwalletUpdateNestedInput
+}
+
+input userwallettransactionUpdateNestedManyInput {
+  create: [userwallettransactionCreateInput]
+  update: [userwallettransactionUpdateWithWhereInput]
+  delete: [userwallettransactionWhereInput]
+  connect: [userwallettransactionWhereInput]
+  disconnect: [userwallettransactionWhereInput]
+}
+
+input userwallettransactionUpdateWithWhereInput {
+  where: userwallettransactionWhereInput
+  input: userwallettransactionUpdateInput
+}
+
+input userwallettransactionWhereInput {
+  id: IDFilter
+  OR: [userwallettransactionWhereInput]
+  AND: [userwallettransactionWhereInput]
+  NOT: userwallettransactionWhereInput
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """Description"""
+  description: StringFilter
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+
+  """service"""
+  service: userserviceWhereInput
+
+  """source"""
+  source: UserWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+
+  """value"""
+  value: FloatFilter
+
+  """wallet"""
+  wallet: userwalletWhereInput
+}
+
+"""type for userwallet model"""
+type userwalletType {
+  """unique identification field"""
+  id: ID
+
+  """balance"""
+  balance: Float
+
+  """created at"""
+  createdAt: DateTime
+
+  """created by"""
+  createdBy: UserType
+
+  """deleted at"""
+  deletedAt: DateTime
+
+  """deleted by"""
+  deletedBy: UserType
+  isActive: Boolean
+  isDeleted: Boolean
+  transaction(where: userwallettransactionWhereInput, orderBy: [userwallettransactionOrderByInput], limit: Int, offset: Int): userwallettransactionTypeConnection
+
+  """updated at"""
+  updatedAt: DateTime
+
+  """updated by"""
+  updatedBy: UserType
+
+  """user"""
+  user: UserType
+}
+
+type userwalletTypeConnection {
+  """Contains the nodes in this connection."""
+  nodes: [userwalletType]!
+  count: Int
+}
+
+input userwalletUpdateInput {
+  """balance"""
+  balance: Float
+  isActive: Boolean
+  transaction: userwallettransactionUpdateNestedManyInput
+
+  """user"""
+  user: UserUpdateNestedInput
+}
+
+input userwalletUpdateNestedInput {
+  create: userwalletCreateInput
+  update: userwalletUpdateInput
+  delete: Boolean
+  connect: userwalletWhereInput
+  disconnect: Boolean
+}
+
+input userwalletUpdateNestedManyInput {
+  create: [userwalletCreateInput]
+  update: [userwalletUpdateWithWhereInput]
+  delete: [userwalletWhereInput]
+  connect: [userwalletWhereInput]
+  disconnect: [userwalletWhereInput]
+}
+
+input userwalletUpdateWithWhereInput {
+  where: userwalletWhereInput
+  input: userwalletUpdateInput
+}
+
+input userwalletWhereInput {
+  id: IDFilter
+  OR: [userwalletWhereInput]
+  AND: [userwalletWhereInput]
+  NOT: userwalletWhereInput
+
+  """balance"""
+  balance: FloatFilter
+
+  """created at"""
+  createdAt: DatetimeFilter
+
+  """created by"""
+  createdBy: UserWhereInput
+
+  """deleted at"""
+  deletedAt: DatetimeFilter
+
+  """deleted by"""
+  deletedBy: UserWhereInput
+
+  """is active"""
+  isActive: BooleanFilter
+
+  """is deleted"""
+  isDeleted: BooleanFilter
+  transaction: userwallettransactionWhereInput
+
+  """updated at"""
+  updatedAt: DatetimeFilter
+
+  """updated by"""
+  updatedBy: UserWhereInput
+
+  """user"""
+  user: UserWhereInput
+}
+
+input UserWhereInput {
+  id: IDFilter
+  OR: [UserWhereInput]
+  AND: [UserWhereInput]
+  NOT: UserWhereInput
+
+  """code"""
+  code: UUIDFilter
+
+  """Country"""
+  country: StringFilter
+
+  """date joined"""
+  dateJoined: DatetimeFilter
+
+  """email address"""
+  email: StringFilter
+
+  """first name"""
+  firstName: StringFilter
+  gendatedisableCreatedBy: gendatedisableWhereInput
+  gendatedisableDeletedBy: gendatedisableWhereInput
+  gendatedisableUpdatedBy: gendatedisableWhereInput
+  genpromotionCreatedBy: genpromotionWhereInput
+  genpromotionDeletedBy: genpromotionWhereInput
+  genpromotionUpdatedBy: genpromotionWhereInput
+  genrecurrenceCreatedBy: genrecurrenceWhereInput
+  genrecurrenceDeletedBy: genrecurrenceWhereInput
+  genrecurrenceUpdatedBy: genrecurrenceWhereInput
+  genreferralbonusCreatedBy: genreferralbonusWhereInput
+  genreferralbonusDeletedBy: genreferralbonusWhereInput
+  genreferralbonusUpdatedBy: genreferralbonusWhereInput
+  genserviceconfigCreatedBy: genserviceconfigWhereInput
+  genserviceconfigDeletedBy: genserviceconfigWhereInput
+  genserviceconfigUpdatedBy: genserviceconfigWhereInput
+  genserviceconfigpriceCreatedBy: genserviceconfigpriceWhereInput
+  genserviceconfigpriceDeletedBy: genserviceconfigpriceWhereInput
+  genserviceconfigpriceUpdatedBy: genserviceconfigpriceWhereInput
+  genserviceparameterCreatedBy: genserviceparameterWhereInput
+  genserviceparameterDeletedBy: genserviceparameterWhereInput
+  genserviceparameterUpdatedBy: genserviceparameterWhereInput
+  genservicepromotionCreatedBy: genservicepromotionWhereInput
+  genservicepromotionDeletedBy: genservicepromotionWhereInput
+  genservicepromotionUpdatedBy: genservicepromotionWhereInput
+  genserviceteamCreatedBy: genserviceteamWhereInput
+  genserviceteamDeletedBy: genserviceteamWhereInput
+  genserviceteamUpdatedBy: genserviceteamWhereInput
+  genservicetype: genservicetypeWhereInput
+  genservicetypeCreatedBy: genservicetypeWhereInput
+  genservicetypeDeletedBy: genservicetypeWhereInput
+  genservicetypeUpdatedBy: genservicetypeWhereInput
+  gensettingCreatedBy: gensettingWhereInput
+  gensettingDeletedBy: gensettingWhereInput
+  gensettingUpdatedBy: gensettingWhereInput
+
+  """
+  Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+  """
+  isActive: BooleanFilter
+
+  """User is Admin"""
+  isAdmin: BooleanFilter
+
+  """User is Manager"""
+  isManager: BooleanFilter
+
+  """Designates whether the user can log into this admin site."""
+  isStaff: BooleanFilter
+
+  """
+  Designates that this user has all permissions without explicitly assigning them.
+  """
+  isSuperuser: BooleanFilter
+
+  """last login"""
+  lastLogin: DatetimeFilter
+
+  """last name"""
+  lastName: StringFilter
+
+  """level"""
+  level: IntFilter
+  managers: genserviceteamWhereInput
+
+  """password"""
+  password: StringFilter
+
+  """Phone"""
+  phone: StringFilter
+
+  """refby"""
+  refby: UserWhereInput
+  referrals: UserWhereInput
+  useraddress: useraddressWhereInput
+  useraddressCreatedBy: useraddressWhereInput
+  useraddressDeletedBy: useraddressWhereInput
+  useraddressUpdatedBy: useraddressWhereInput
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: StringFilter
+  userservice: userserviceWhereInput
+  userserviceCreatedBy: userserviceWhereInput
+  userserviceDeletedBy: userserviceWhereInput
+  userserviceUpdatedBy: userserviceWhereInput
+  userserviceconfigCreatedBy: userserviceconfigWhereInput
+  userserviceconfigDeletedBy: userserviceconfigWhereInput
+  userserviceconfigUpdatedBy: userserviceconfigWhereInput
+  userwallet: userwalletWhereInput
+  userwalletCreatedBy: userwalletWhereInput
+  userwalletDeletedBy: userwalletWhereInput
+  userwalletUpdatedBy: userwalletWhereInput
+  userwallettransaction: userwallettransactionWhereInput
+  userwallettransactionCreatedBy: userwallettransactionWhereInput
+  userwallettransactionDeletedBy: userwallettransactionWhereInput
+  userwallettransactionUpdatedBy: userwallettransactionWhereInput
+}
+
+"""
+Leverages the internal Python implementation of UUID (uuid.UUID) to provide native UUID objects
+in fields, resolvers and input.
+"""
+scalar UUID
+
+input UUIDFilter {
+  """Exact match."""
+  exact: UUID
+  in: [UUID]
+
+  """Is null."""
+  isnull: Boolean
+}
+
+"""
+Verify user account.
+
+Receive the token that was sent by email.
+If the token is valid, make the user verified
+by making the `user.status.verified` field true.
+"""
+type VerifyAccount {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""
+Verify user secondary email.
+
+Receive the token that was sent by email.
+User is already verified when using this mutation.
+
+If the token is valid, add the secondary email
+to `user.status.secondary_email` field.
+
+Note that until the secondary email is verified,
+it has not been saved anywhere beyond the token,
+so it can still be used to create a new account.
+After being verified, it will no longer be available.
+"""
+type VerifySecondaryEmail {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""Same as `grapgql_jwt` implementation, with standard output."""
+type VerifyToken {
+  payload: GenericScalar!
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
